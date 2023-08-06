@@ -1,0 +1,23 @@
+.footer{
+    width: 100%;
+    background: #dcdcdc;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    align-content: space-between;
+    padding: 0 25px;
+}
+
+.footer-card{
+    width: 100%;
+    background: #dcdcdc;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    align-content: space-between;
+    padding: 0 25px;
+}

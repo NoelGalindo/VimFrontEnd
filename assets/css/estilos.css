@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&family=Source+Sans+Pro:wght@200;300;400;600;900&display=swap');
+:root{
+    --width: 250px;
+    --padding: 10px;
+    --bgcolor: #f5f5f5;
+    --hovercolor: #ecf2f6;
+    --activecolor: #CCE3F2;
+    --activecolor-use: #fff1df;
+    --hovercolor-use: #FFFAF3;
+    --activecolor-tools: #fee6ef;
+    --hovercolor-tools: #fff1f7;
+    --shadow: 0 2px 5px rgb(0,0,0,0.1);
+    --transition: all 0.6s;
+    --width-collapsed: 80px;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none !important;
+}
+dl, ol, ul{
+    padding-left: 0 !important;
+}
+
+span{
+    font-weight: 200 !important;
+}
+
+body{
+    height: 100vh;
+    background: #eaeaea;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+}
+.workspace{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #eaeaea;
+}
+.message{
+    width: calc(100%);
+    height: auto;
+    padding: 10px;
+    position: relative;
+}
+/*.message::after{
+	content:"x";
+	display:table-cell;
+	padding-top:7px;
+	text-align:center;
+	width:30px;
+	height:30px;
+	position:absolute;
+	top:0;
+	right:0px;	
+	pointer-events: none;
+    cursor: pointer;
+}*/
+
+.message-grey{
+    background: #f4f4f4;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    color: #939393;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.message-green{
+    background: #cdefbc;
+    border: 1px solid #b9d8aa;
+    border-radius: 8px;
+    color: #93b781;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.message-yellow{
+    background: #f3f1ca;
+    border: 1px solid #eee4a2;
+    border-radius: 8px;
+    color: #ecae44;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.message-red{
+    background: #f3caca;
+    border: 1px solid #eea2a2;
+    border-radius: 8px;
+    color: #ec4444;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.message-blue{
+    background: #cad8f3;
+    border: 1px solid #a2ccee;
+    border-radius: 8px;
+    color: #4471ec;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
