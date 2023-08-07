@@ -38,7 +38,7 @@
     height: 100%;
     width: 100%;
     padding: 10px;
-    overflow: scroll;
+    /*overflow: scroll; */
 }
 .list-item{
     list-style-type: none;

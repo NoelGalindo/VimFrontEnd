@@ -4,33 +4,41 @@ $(document).ready(function() {
     cargarFormularios();
 });
 
+
 async function actualizarUsername(){
-  let token = localStorage.getItem('token');
-  const request = await fetch('http://127.0.0.1:8080/solicitud_form/userData', {
-  method: 'POST',
-  headers: getHeaders(),
-  body: token // Se envia el token para obtener el usuario 
-  });
   try{
-      const response = await request.json();
-      if(response.status === 403){
-          throw new Error('Acceso prohibido');
-      }
-      // Load and set the information of the user the token is OK
-      document.getElementById("txt-username").textContent = response.username;
-      document.getElementById("txt-name").textContent = response.firstname+" "+response.lastname;
-      localStorage.setItem("id_usuario", response.id)
-      
+    let token = localStorage.getItem('token');
+    const request = await fetch('http://localhost:8080/solicitud_form/userData', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer '+token
+    },
+    body: token // Se envia el token para obtener el usuario 
+    });
+    
+    const response = await request.json();
+    if(response.status === 403){
+        throw new Error('Acceso prohibido');
+    }
+    // Load and set the information of the user the token is OK
+    document.getElementById("txt-username").textContent += response.username;
+    document.getElementById("txt-name").textContent = response.firstname+" "+response.lastname;
+    localStorage.setItem("id_usuario", response.id)
+    localStorage.setItem("username", response.username)
   }catch(Error){
       window.location.href = 'login.html'
   }
 }
 
 async function cargarFormularios(){
+  try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://127.0.0.1:8080/solicitud_form/api/FormulariosActivos', {
+    const request = await fetch('http://localhost:8080/solicitud_form/api/FormulariosActivos', {
       method: 'POST',
-      headers: getHeaders(),
+      headers: {
+        'Authorization': 'Bearer '+token,
+        'Content-Type': 'application/json'  
+      },
       body: token
     });
     const formularios = await request.json();
@@ -77,28 +85,82 @@ async function cargarFormularios(){
                         </tr>`;
         listOfForms += formData;
       }
-        
     }
+    toastifyCorrectLoad("Formularios cargados correctamente", 1000)
     document.getElementById("contentTable").outerHTML += listOfForms
+  }catch(Error){
+    toastifyError("Error al cargar los formularios", 1000)
+  }
   
   }
 
-  function getHeaders(){
-    return {
-                'Content-Type': 'text/plain',
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
-    };
+  async function eliminarFormulario(id){
+    try{
+      let token = localStorage.getItem('token');
+      if(confirm('¿Desea eliminar este formulario? ')){
+          const request = await fetch('http://localhost:8080/solicitud_form/api/eliminarFormulario/'+id, {
+                  method: 'DELETE',
+                  headers: {
+                    'Authorization': 'Bearer '+token
+                  }
+                });
+          toastifyAllGood("Formulario eliminado", 1000)
+          setTimeout(function() {
+            location.reload();
+          }, 1300);
+      }
+    }catch(Error){
+      toastifyError("Error al eliminar el formulario", 1000)
+    }  
   }
 
+  function toastifyAllGood(textT, durationT){ 
+    Toastify({
+      text: textT,
+      duration: durationT,
+      destination: "#",
+      newWindow: false,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #09cd08, #0abf2b, #0b8928)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
 
-  async function eliminarFormulario(id){
-
-      if(confirm('¿Desea eliminar este formulario? '+ id)){
-          const request = await fetch('api/eliminarFormulario/'+id, {
-                  method: 'DELETE',
-                  headers: getHeaders()
-                });
-          location.reload(); // Actualiza la página.
-      }
-
+  function toastifyCorrectLoad(textT, durationT){ 
+    Toastify({
+      text: textT,
+      duration: durationT,
+      destination: "#",
+      newWindow: false,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #1ab7dc, #0abfb7, #09839d)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
+  
+  function toastifyError(textT, durationT){
+    Toastify({
+      text: textT,
+      duration: durationT,
+      destination: "#",
+      newWindow: false,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #830225, #e40e4f, #890b26)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
   }

@@ -9,6 +9,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" type="image/png" sizes="437x437" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/estilos.css">
     <link rel="stylesheet" href="assets/css/header.css">
@@ -91,7 +92,7 @@
             </div>
             <div class="tools-header">
                 <div class="search-tools-header">
-                    <labe id="txt-username">Usuario: </labe>
+                    <p id="txt-username"></p>
                 </div>
                 <div class="perfil-tools-header list-button-click">
                     <div class="img-perfil">
@@ -143,7 +144,7 @@
             </div>
         </div>
         <!-- Contenido -->
-        <div style="height: 100%; overflow: scroll;">
+        <div style="height: 100%;">
             <div class="content-grid">
                 <div class="card">
                     <div class="head-card">
@@ -174,7 +175,7 @@
         </div>
         <!-- <div class="footer">Footer</div> -->
 
-        <!--Modal Add Form-->
+        <!--Modal Edit Form-->
 
         <!-- Modal -->
         <div class="modal fade" id="modalSeeContent" tabindex="-1" aria-labelledby="modalSeeAllContent" aria-hidden="true">
@@ -268,6 +269,7 @@
                     <option value="text">Texto</option>
                     <option value="number">Número</option>
                     <option value="date">Fecha</option>
+                    <option value="file">Archivo/Imagen</option>
                 </select>
                 </div>
                 <div class="modal-footer">
@@ -434,6 +436,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- JQuery -->
     <script type="text/javascript" src="assets/js/jquery-3.7.0.min.js"> </script>
