@@ -32,7 +32,7 @@ async function getFormData(id_formulario){
       let content = document.getElementById("formContent")
       content.innerHTML = response.estructura_formulario
 
-      toastifyAllGood("Informacion cargada correctamente", 1500)
+      toastifyCorrectLoad("Información cargada correctamente", 1500)
       
     }catch(Error){
       toastifyError("Error al obtener el formulario", 1500)

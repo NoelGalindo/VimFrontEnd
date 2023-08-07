@@ -19,12 +19,24 @@ try{
         throw new Error('Acceso prohibido');
       }
       localStorage.setItem("token", response.token)
-      // Toastify       
+      localStorage.setItem("role", response.role)
+
+      // Toastify
       toastifyAllGood("Bienvenido", 1000)
-      // Reload after some time
-      setTimeout(function() {
-        window.location.href="dashboard_manager.html"
+
+      setTimeout(() => {
+        switch(localStorage.getItem("role")){
+          case "ADMIN":
+            window.location.href="admin_CP/index.html"
+            break;
+          case "MANAGER":
+              window.location.href="dashboard_manager.html"
+            break; 
+        }
       }, 1300);
+        
+             
+      
   }catch(Error){
     toastifyError("Error al iniciar sesión", 1000)
   }

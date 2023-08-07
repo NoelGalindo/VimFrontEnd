@@ -1,18 +1,44 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
+    loadUserInformation()
     loadForms();
-    actualizarUsername()
 });
 
-/* Load the forms that have been send */
-function actualizarUsername(){
-    document.getElementById("txt-username").textContent = localStorage.usuario;
+async function loadUserInformation(){
+  try{  
+    let token = localStorage.getItem('token');
+    const request = await fetch('http://localhost:8080/admin/userData', {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Bearer '+token
+    },
+    body: token // Se envia el token para obtener el usuario 
+    });
+  
+    const response = await request.json();
+    if(response.status === 403){
+        throw new Error('Acceso prohibido');
+    }
+    // Load and set the information of the user the token is OK
+    document.getElementById("txt-username").textContent += response.username;
+    document.getElementById("txt-name").textContent = response.firstname+" "+response.lastname;
+    localStorage.setItem("id_usuario", response.id)
+    localStorage.setItem("username", response.username)
+
+  }catch(Error){
+      window.location.href = '../login.html'
+  }
 }
 
+
 async function loadForms(){
-    const request = await fetch('api/activeForms', {
-        method: 'GET',
-        headers: getHeaders()
+  try{
+    let token = localStorage.getItem('token');
+    const request = await fetch('http://localhost:8080/admin/api/activeForms', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer '+token,
+        }
       });
       const formularios_activos = await request.json();
       
@@ -23,13 +49,18 @@ async function loadForms(){
         let formDone = `<button style="padding: revert;" value="${form.id_formulario}" title="Realizado" onclick="completeForm(this)" class="btn btn-green btn-circle "><i class="bi bi-check-circle-fill"></i></button>`
         let formData = `<tr">
                             <td>${form.id_formulario}</td>
-                            <td>${form.usuario}</td>
+                            <td>${form.username}</td>
                             <td>${form.date}</td>
                             <td>${seeFormBtn}${downloadFormBtn}${formDone}</td>
                         </tr>`;
         listOfForms += formData;
       }
       document.getElementById("contentTable").outerHTML += listOfForms
+      toastifyCorrectLoad("Formularios cargados correctamente", 1000)
+  }catch(Error){
+      toastifyError("Error al cargar los formularios", 1000)
+  }
+    
 }
 
 /* See the estructure of the form */
@@ -43,43 +74,54 @@ function seeFormStructure(data){
 }
 
 async function getFormData(id_formulario){
-    const request = await fetch('api/seeFormStructure/' + id_formulario, {
-        method: 'GET',
-        headers: getHeaders()
-      });
-      const formData = await request.json();
-      console.log(formData)
-
-      if(formData != null){
-        const direccion_completa = formData.direccion_url.split('/')
-        document.getElementById('direccionUrl').value = direccion_completa[direccion_completa.length - 1]
-        document.getElementById('nombreFormulario').value = formData.nombre_formulario
-        document.getElementById('informacionFormulario').value = formData.informacion_formulario
-        document.getElementById('cupoMaximo').value = formData.cupo_maximo
-        
-        let content = document.getElementById("formContent")
-        content.innerHTML = formData.estructura_formulario
-      }else{
-        alert('Error')
+  try{
+    let token = localStorage.getItem('token');
+    const request = await fetch('http://localhost:8080/admin/api/seeFormStructure/' + id_formulario, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer '+token,
+        'Accept': 'application/json'
       }
+      });
+    const formData = await request.json();
+    console.log(formData)
+
+    const direccion_completa = formData.direccion_url.split('/')
+    document.getElementById('direccionUrl').value = direccion_completa[direccion_completa.length - 1]
+    document.getElementById('nombreFormulario').value = formData.nombre_formulario
+    document.getElementById('informacionFormulario').value = formData.informacion_formulario
+    document.getElementById('cupoMaximo').value = formData.cupo_maximo
+          
+    let content = document.getElementById("formContent")
+    content.innerHTML = formData.estructura_formulario
+    toastifyCorrectLoad("Información cargada correctamente", 1000)
+        
+  }catch(Error){
+    toastifyError("Error al cargar la información", 1000)
+  }
 
 }
 
 /* Download the form in a txt file */
- async function downloadForm(data){
+async function downloadForm(data){
+  try{
     let id_formulario = data.value
-    const request = await fetch('api/downloadForm/' + id_formulario, {
+    let token = localStorage.getItem('token');
+    const request = await fetch('http://localhost:8080/admin/api/downloadForm/' + id_formulario, {
         method: 'GET',
-        headers: getHeaders()
+        headers: {
+          'Authorization': 'Bearer '+token,
+          'Accept': 'application/json'
+        }
       });
       const formData = await request.json();
-      console.log(formData)
-
-      if(formData != null){
-        download("Formulario.html", formData.estructura_formulario)
-      }else{
-        alert('Error')
-      }
+      toastifyAllGood("Descargando", 1000)
+      download("Formulario.html", formData.estructura_formulario)
+      
+  }catch(Error){
+    toastifyError("Ocurrio un error al descargar la información", 1000)
+  }
+    
 }
 
 function download(filename, text) {
@@ -97,24 +139,75 @@ function download(filename, text) {
 
 /* Complete the form and change the state in the DB */
 async function completeForm(data){
-  let id_formulario = data.value
-  const request = await fetch('api/completeForm', {
+  try{  
+    let token = localStorage.getItem('token');
+    let id_formulario = data.value
+    const request = await fetch('http://localhost:8080/admin/completeForm', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+        'Authorization': 'Bearer '+token
     },
-    body: id_formulario // Llama esa función para convertir en json.
-  });
-
-  alert('Formulario completado correctamente');
+    body: id_formulario // Se envia el token para obtener el usuario 
+    });
   
+    const response = await request.json();
+    if(response.status === 403){
+        throw new Error('Acceso prohibido');
+    }
+    
+    toastifyAllGood("Formulario publicado correctamente", 1000)
+  }catch(Error){
+      toastifyError("Error al publicar el formulario", 1000)
+  }   
 }
 
-function getHeaders(){
-    return {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': localStorage.token
-    };
+  function toastifyAllGood(textT, durationT){ 
+    Toastify({
+      text: textT,
+      duration: durationT,
+      destination: "#",
+      newWindow: false,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #09cd08, #0abf2b, #0b8928)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
+
+  function toastifyCorrectLoad(textT, durationT){ 
+    Toastify({
+      text: textT,
+      duration: durationT,
+      destination: "#",
+      newWindow: false,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #1ab7dc, #0abfb7, #09839d)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
+  }
+  
+  function toastifyError(textT, durationT){
+    Toastify({
+      text: textT,
+      duration: durationT,
+      destination: "#",
+      newWindow: false,
+      close: true,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #830225, #e40e4f, #890b26)",
+      },
+      onClick: function(){} // Callback after click
+    }).showToast();
   }
