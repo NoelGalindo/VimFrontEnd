@@ -65,9 +65,9 @@ async function saveForm(){
       toastifyAllGood("Formulario actualizado", 1500)
 
       /* Hide the modals */
-      let myModalEl = document.getElementById('modalSeeContent');
-      let modal = bootstrap.Modal.getInstance(myModalEl)
-      modal.hide();  
+      setTimeout(function() {
+        location.reload();
+      }, 1300);  
   }catch(Error){
     toastifyError("Error al guardar el formualrio", 1500)
   }
@@ -81,6 +81,7 @@ async function sendForm(id_formulario){
     form.id_formulario = id_formulario.value
     form.username = localStorage.getItem("username")
     form.date = today.toLocaleDateString('en-CA');
+    form.estado = "PENDIENTE"
 
     const request = await fetch('http://localhost:8080/solicitud_form/api/sendForm', {
             method: 'POST',

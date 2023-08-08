@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Register - Registro de participantes</title>
+    <meta name="description" content="Plataforma para organizar y gestionar eventos y cursos">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" sizes="437x437" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="assets/img/Logos/Logo_EnCurso_txt.png" style="width: 130px;">
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">INICIO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service-page.html">SERVICIOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">PRECIOS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">CASO DE ÉXICO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact-us.html">CONTACTO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="conferencias.html">CONFERENCIAS</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="registration.html">REGISTRO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">LOGIN</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page registration-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Registro</h2>
+                </div>
+                <form style="max-width: 1000px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <ul class="nav nav-tabs card-header-tabs">
+                                <li class="nav-item"><a class="nav-link active" href="#">Datos Generales</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#direccion">Dirección</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#">Documentos</a></li>
+                            </ul>
+                        </div>
+                        <div class="card-body" id="general" style="padding-top: 60px;">
+                            <h4 class="text-center card-title" style="padding-bottom: 20px;">Datos de la Organización</h4>
+                            <p class="card-text"></p>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Nombre</span><input class="form-control" type="text" id="nombre-1"></div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">RFC</span><input class="form-control" type="text" id="rfc"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Teléfono</span><input class="form-control" type="number" style="width: 100px;"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Correo</span><input class="form-control" type="email" id="correo"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Sector</span><select class="form-select">
+                                            <optgroup label="Selección">
+                                                <option value="1" selected="">Educación Pública</option>
+                                                <option value="2">Educación Particular</option>
+                                                <option value="3">Empresa Privado</option>
+                                                <option value="3">Gobierno</option>
+                                                <option value="5">Asociación u Organización</option>
+                                            </optgroup>
+                                        </select></div>
+                                </div>
+                            </div>
+                            <div style="width: 100%;height: 50px;"></div>
+                            <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end" style="width: 100%;height: 50px;"><button class="btn btn-warning" type="button">Siguiente&nbsp;<i class="fa fa-arrow-circle-o-right"></i></button></div>
+                        </div>
+                        <div class="card-body" id="direccion" style="padding-top: 60px;">
+                            <h4 class="text-center card-title" style="padding-bottom: 20px;">Ubicación de la Organización</h4>
+                            <p class="card-text"></p>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Estado</span><select class="form-select" id="estados">
+                                            <optgroup label="Selección">
+                                                <option value="1" selected="">Estado de México</option>
+                                                <option value="2">Ciudad de México</option>
+                                                <option value="3">Puebla</option>
+                                            </optgroup>
+                                        </select></div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Municipio</span><select class="form-select" id="municipio">
+                                            <optgroup label="Selección">
+                                                <option value="1" selected="">Toluca</option>
+                                                <option value="2">Metepec</option>
+                                                <option value="3">Almoloya</option>
+                                            </optgroup>
+                                        </select></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 130px;">Código Postal</span><select class="form-select" id="codigopostal">
+                                            <optgroup label="Selección">
+                                                <option value="1" selected="">50000</option>
+                                                <option value="2">50940</option>
+                                                <option value="3">5012</option>
+                                            </optgroup>
+                                        </select></div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Colonia</span><select class="form-select">
+                                            <optgroup label="Selección">
+                                                <option value="1" selected="">Centro</option>
+                                                <option value="2">Santa Clara</option>
+                                                <option value="3">Electricistas</option>
+                                            </optgroup>
+                                        </select></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"></div>
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">Calle</span><input class="form-control" type="text" id="calle"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">No. Ext.</span><input class="form-control" type="number" id="numero"></div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 col-xxl-3" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="input-group"><span class="input-group-text" style="width: 100px;">No. Int.</span><input class="form-control" type="number" id="numero-1"></div>
+                                </div>
+                            </div>
+                            <div style="width: 100%;height: 50px;"></div>
+                            <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end" style="width: 100%;height: 50px;"><button class="btn btn-warning" type="button">Siguiente&nbsp;<i class="fa fa-arrow-circle-o-right"></i></button></div>
+                        </div><!-- Start: documentacion -->
+                        <div class="card-body" id="direccion-1" style="padding-top: 60px;">
+                            <h4 class="text-center card-title" style="padding-bottom: 20px;">Documentos de la Organización</h4>
+                            <p class="card-text"></p>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;"><label class="form-label">Documento de creación institucional</label><input class="form-control" type="file"></div>
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;"><label class="form-label">RFC</label><input class="form-control" type="file"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6" style="padding-top: 8px;padding-bottom: 8px;">
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Particular</label></div>
+                                </div>
+                                <div class="col"><label class="form-label">REVOE</label><input class="form-control" type="file"></div>
+                            </div>
+                            <div style="width: 100%;height: 50px;"></div>
+                            <div class="d-flex d-sm-flex d-md-flex d-lg-flex d-xl-flex d-xxl-flex justify-content-center justify-content-sm-end justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end" style="width: 100%;height: 50px;"><button class="btn btn-warning" type="submit">Enviar&nbsp;&nbsp;<i class="fa fa-arrow-circle-o-right"></i></button></div>
+                        </div><!-- End: documentacion -->
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main><!-- Start: Footer Dark -->
+    <footer class="page-footer dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Sign up</a></li>
+                        <li><a href="#">Downloads</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="#">Company Information</a></li>
+                        <li><a href="#">Contact us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help desk</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2022 Copyright Text</p>
+        </div>
+    </footer><!-- End: Footer Dark -->
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="assets/js/vanilla-zoom.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>

@@ -34,7 +34,7 @@ async function loadUserInformation(){
 async function loadForms(){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/api/activeForms', {
+    const request = await fetch('http://localhost:8080/admin/api/pendingForms', {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -142,18 +142,13 @@ async function completeForm(data){
   try{  
     let token = localStorage.getItem('token');
     let id_formulario = data.value
-    const request = await fetch('http://localhost:8080/admin/completeForm', {
+    const request = await fetch('http://localhost:8080/admin/api/completeForm', {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer '+token
     },
     body: id_formulario // Se envia el token para obtener el usuario 
     });
-  
-    const response = await request.json();
-    if(response.status === 403){
-        throw new Error('Acceso prohibido');
-    }
     
     toastifyAllGood("Formulario publicado correctamente", 1000)
   }catch(Error){
@@ -161,7 +156,7 @@ async function completeForm(data){
   }   
 }
 
-  function toastifyAllGood(textT, durationT){ 
+function toastifyAllGood(textT, durationT){ 
     Toastify({
       text: textT,
       duration: durationT,
@@ -176,9 +171,9 @@ async function completeForm(data){
       },
       onClick: function(){} // Callback after click
     }).showToast();
-  }
+}
 
-  function toastifyCorrectLoad(textT, durationT){ 
+function toastifyCorrectLoad(textT, durationT){ 
     Toastify({
       text: textT,
       duration: durationT,
@@ -193,9 +188,9 @@ async function completeForm(data){
       },
       onClick: function(){} // Callback after click
     }).showToast();
-  }
+}
   
-  function toastifyError(textT, durationT){
+function toastifyError(textT, durationT){
     Toastify({
       text: textT,
       duration: durationT,
@@ -210,4 +205,4 @@ async function completeForm(data){
       },
       onClick: function(){} // Callback after click
     }).showToast();
-  }
+}
