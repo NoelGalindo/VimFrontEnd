@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Inicio de sesión</title>
+    <meta name="description" content="Plataforma para organizar y gestionar eventos y cursos">
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="icon" type="image/png" sizes="437x437" href="../../assets/img/favicon.png">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="../../assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../../assets/css/Login-Form-Clean.css">
+    <link rel="stylesheet" href="../../assets/css/Registration-Form-with-Photo.css">
+    <link rel="stylesheet" href="../../assets/css/vanilla-zoom.min.css">
+</head>
+
+<body>
+    <main class="page registration-page" style="height: 100vh;">
+        <!-- Start: Registration Form with Photo -->
+        <section class="register-photo" style="height: 100vh;">
+            <!-- Start: Form Container -->
+            <div class="form-container">
+                <!-- Start: Image -->
+                <div class="image-holder"></div><!-- End: Image -->
+                <form>
+                    <div class="mb-3" style="text-align: center;"><img src="../../assets/img/Logos/Logo_EnCurso_txt.png" style="width: 190px;margin: 0 auto 0 auto;"></div>
+                    <div style="height: 40px;"></div>
+                    <h2 class="text-center"><strong>Inicio de sesión usuario</strong></h2>
+                    <div class="mb-3">
+                        <div class="input-group"><span class="input-group-text" style="height: 40px;background: rgb(240,242,245);padding-left: 10px;padding-right: 10px;"><i class="material-icons" style="color: rgb(163,163,163);">person_outline</i></span><input class="form-control" id="txtFolio" type="text" name="folio" placeholder="Folio" required></div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group"><span class="input-group-text" style="height: 40px;background: rgb(240,242,245);width: 45px;padding-right: 10px;padding-left: 10px;"><i class="material-icons" style="color: rgb(163,163,163);">lock_outline</i></span><input class="form-control" id="txtEmail" type="email" name="email" placeholder="Email" required></div>
+                    </div>
+                    <div class="mb-3"><button onclick="inicioSesionUsuario()" class="btn btn-primary d-block w-100" type="button">Entrar</button></div><!--<a class="already" href="#">¿Olvidaste tu contraseña?</a> -->
+                </form>
+            </div><!-- End: Form Container -->
+        </section><!-- End: Registration Form with Photo -->
+    </main>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- <script src="assets/js/bs-init.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <!-- <script src="assets/js/vanilla-zoom.js"></script>
+    <script src="assets/js/theme.js"></script> -->
+    <script src="../../assets/js/example_formsJS/login.js"></script>
+</body>
+
+</html>

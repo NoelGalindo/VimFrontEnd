@@ -42,10 +42,11 @@ async function getFormData(id_formulario){
 async function saveForm(){
   try{
     let token = localStorage.getItem('token');
+    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
     let formEdit = {}
     formEdit.id_formulario = document.getElementById("id_formulario").value
     formEdit.username = localStorage.getItem("username")
-    formEdit.direccion_url = "https://encurso.com/evento/"+document.getElementById('direccionUrl').value;
+    formEdit.direccion_url = path+document.getElementById('direccionUrl').value;
     formEdit.nombre_formulario = document.getElementById('nombreFormulario').value;
     formEdit.informacion_formulario = document.getElementById('informacionFormulario').value;
     formEdit.cupo_maximo = document.getElementById('cupoMaximo').value;

@@ -1,9 +1,15 @@
+$(document).ready(function() {
+  let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
+  document.getElementById("basic-addon3").innerHTML=path
+});
+
 async function addRequest(){
   try{
     let token = localStorage.getItem('token');
+    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
     let datosGeneralosForm = {};
     datosGeneralosForm.username = localStorage.getItem("username")
-    datosGeneralosForm.direccion_url = "https://encurso.com/evento/"+document.getElementById('direccionUrl').value;
+    datosGeneralosForm.direccion_url = path+document.getElementById('direccionUrl').value;
     datosGeneralosForm.nombre_formulario = document.getElementById('nombreFormulario').value;
     datosGeneralosForm.informacion_formulario = document.getElementById('informacionFormulario').value;
     datosGeneralosForm.cupo_maximo = document.getElementById('cupoMaximo').value;

@@ -10,7 +10,7 @@ async function submitFormGafete(e){
     data.folio = document.getElementById('folio').value
     data.email = document.getElementById('email').value
     
-    const request = await fetch('api/dataQrCode', {
+    const request = await fetch('http://localhost:8080/user/exampleForm/api/dataQrCode', {
         method: 'POST',
         headers: getHeaders(),
         body: JSON.stringify(data) // Llama esa función para convertir en json.
@@ -69,6 +69,5 @@ function getHeaders(){
     return {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': localStorage.token
     };
   }

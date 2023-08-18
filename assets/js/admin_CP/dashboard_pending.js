@@ -1,5 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
+    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
+    document.getElementById("basic-addon3").innerHTML=path
     loadUserInformation()
     loadForms();
 });

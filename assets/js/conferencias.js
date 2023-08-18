@@ -13,20 +13,22 @@ async function loadAvailableConferences(){
         });
       
         const response = await request.json();
+        let numbConference = 0;
         let listOfConferences = ""
         for(let conferences of response){
             listOfConferences += `<div class="col-md-6 col-lg-6 col-sm-12  p-1">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">${response[0][1]}</h5>
-                                            <p class="card-text">${response[0][2]}</p>
-                                            <p class="card-text">Cupo Máximo: ${response[0][3]}</p>
-                                            <a href="#" class="btn btn-primary">Registrarme</a>
+                                            <h5 class="card-title">${response[numbConference][1]}</h5>
+                                            <p class="card-text">${response[numbConference][2]}</p>
+                                            <p class="card-text">Cupo Máximo: ${response[numbConference][3]}</p>
+                                            <a href="${response[numbConference][0]}" class="btn btn-primary">Registrarme</a>
                                         </div>
                                     </div>
                                 </div>   `
+            numbConference++;
         }
-        document.getElementById("conferencesAvailable").outerHTML += listOfConferences
+        document.getElementById("conferencesAvailable").innerHTML += listOfConferences
         toastifyCorrectLoad("Conferencias cargadas correctamente", 1000)
       }catch(Error){
           toastifyError("Error al cargar las conferencias", 1000)

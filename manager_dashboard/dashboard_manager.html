@@ -178,7 +178,7 @@
                                 <label style="font-weight: bold;" for="direccionUrl" class="form-label">Dirección donde
                                     estara tu formulario:</label>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon3">https://encurso.com/evento/</span>
+                                    <span class="input-group-text" id="basic-addon3"></span>
                                     <input type="text" class="form-control" id="direccionUrl"
                                            aria-describedby="basic-addon3">
                                 </div>
@@ -355,7 +355,7 @@
                 <h5 class="modal-title" id="staticBackdropLabel">Usuarios registrados</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow: scroll;">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -389,7 +389,7 @@
                 <h5 class="modal-title" id="staticBackdropLabel">Usuarios confirmados</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow: scroll;">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -401,6 +401,7 @@
                                 <th>Fecha</th>
                                 <th>Voucher</th>
                                 <th>Asistencia</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="tableConfirmedUsers">

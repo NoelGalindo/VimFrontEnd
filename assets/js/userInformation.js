@@ -25,6 +25,6 @@ async function loadUserInformation(){
     localStorage.setItem("username", response.username)
 
   }catch(Error){
-      window.location.href = 'login.html'
+      window.location.href = '../login.html'
   }
 }

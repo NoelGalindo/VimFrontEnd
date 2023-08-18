@@ -1,7 +1,9 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-    actualizarUsername();
-    cargarFormularios();
+  let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
+  document.getElementById("basic-addon3").innerHTML=path
+  actualizarUsername();
+  cargarFormularios();
 });
 
 
@@ -26,7 +28,7 @@ async function actualizarUsername(){
     localStorage.setItem("id_usuario", response.id)
     localStorage.setItem("username", response.username)
   }catch(Error){
-      window.location.href = 'login.html'
+      window.location.href = '../login.html'
   }
 }
 
@@ -61,10 +63,12 @@ async function cargarFormularios(){
       }
       // Form ready to use
       if(form.status === "Listo"){
-        let checkbtn = '<button style="padding: revert;" title="Ver usuarios" onclick="seeRegisterUsers('+form.id_formulario+')" class="btn btn-green btn-circle btn-sm"><i class="bi bi-check-square"></i> </button>'
-        let confirmedUsersBtn = '<button style="padding: revert;" title="Ver usuarios aceptados" onclick="seeConfirmedUsers('+form.id_formulario+')" class="btn btn-blue btn-circle btn-sm"><i class="bi bi-list-ul"></i> </button>'
+        let direccion_completa = form.direccion_url.split('/')
+        let tableName = ""+direccion_completa[direccion_completa.length - 1]
+        let checkbtn = '<button style="padding: revert;" value="'+tableName+'" title="Ver usuarios" onclick="seeRegisterUsers(this)" class="btn btn-green btn-circle btn-sm"><i class="bi bi-check-square"></i> </button>'
+        let confirmedUsersBtn = '<button style="padding: revert;" value="'+tableName+'" title="Ver usuarios aceptados" onclick="seeConfirmedUsers(this)" class="btn btn-blue btn-circle btn-sm"><i class="bi bi-list-ul"></i> </button>'
         let formData = `<tr style="background-color: lightgreen;">
-                            <td><a href="#" target="blank">${form.direccion_url}</a></td>
+                            <td><a href="${form.direccion_url}" target="blank">${form.direccion_url}</a></td>
                             <td>${form.nombre_formulario}</td>
                             <td>${form.informacion_formulario}</td>
                             <td>${checkbtn}${confirmedUsersBtn}</td>

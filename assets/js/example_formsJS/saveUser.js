@@ -37,21 +37,33 @@ function submitForm(e){
   let form = new FormData();
   form.append("image", file.files[0], datetime.toISOString())
   
-  saveImage(form).then((result) => {
-    data.voucher = result.data.display_url
-    registerUserExample(data)
-  })
-.catch(console.error)
+    saveImage(form).then((result) => {
+      try{
+        data.voucher = result.data.display_url
+        registerUserExample(data)
+      }catch(Error){
+        console.log("Error")
+      }
+      
+    })
+    .catch(console.log(error))
+  
+  
   
 }
 
 // Send the data to be save
 async function registerUserExample(data){
-  const request = await fetch('api/registerUserExampleForm', {
-    method: 'POST',
-    headers: getHeaders(),
-    body: JSON.stringify(data) // Llama esa función para convertir en json.
-  });
+  try{
+    const request = await fetch('http://localhost:8080/user/exampleForm/api/registerUserExampleForm', {
+      method: 'POST',
+      headers: getHeaders(),
+      body: JSON.stringify(data) // Llama esa función para convertir en json.
+    });
+  }
+  catch(Error){
+    console.log("Error "+ Error)
+  }
 
   alert('Usuario registrado correctamente');
 
