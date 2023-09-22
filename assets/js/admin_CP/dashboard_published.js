@@ -1,7 +1,5 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
-    document.getElementById("basic-addon3").innerHTML=path
     loadUserInformation()
     loadForms();
 });
@@ -36,17 +34,17 @@ async function loadUserInformation(){
 async function loadForms(){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/api/publishedForms', {
+    const request = await fetch('http://localhost:8080/EventosEnviados/api/getPublishedEvents', {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
           'Accept': 'application/json'
         }
       });
-      const formularios_activos = await request.json();
-      
+      const response = await request.json();
+      let size = response.length
       let listOfForms = ""
-      for(let form of formularios_activos){
+      for(let i = 0;i<size;i++){
         let seeFormBtn = `<button style="padding: revert;" value="${form.id_formulario}" title="Ver" onclick="seeFormStructure(this)" class="btn btn-blue btn-circle" ><i class="bi bi-eye-fill"></i></button>`
         let formData = `<tr">
                             <td>${form.id_formulario}</td>

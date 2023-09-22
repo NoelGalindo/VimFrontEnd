@@ -175,6 +175,7 @@
                             <input class="input-form" id="email" type="email" placeholder="Email" required><br><br>
                           <div class="form-fileset-btn">
                              <input title="Buscar" class="btn-green" type="submit" value="Buscar">
+                             <button style="display: none;" id="dowloadBtn" title="Descargar PDF" class="btn-yellow"  onclick="downloadOnPdf()"><i class="bi bi-file-earmark-arrow-down"></i>Descargar</button>
                           </div>
                     </form>
                     </div>
@@ -191,7 +192,8 @@
                             No se ah validado tu información, favor de esperar por la confirmación.
                         </div>
                         <div style="display: none;" id="with-acces">
-                            <div style="height: 100px; background-color: sienna; display: flex; justify-content: center; color: white;">
+
+                            <!-- <div style="height: 100px; background-color: sienna; display: flex; justify-content: center; color: white;">
                                 <p style="display: flex; position: relative; top: 30%; font-size: 25px;">Gafete de acceso</p>
                             </div>
                             <br>
@@ -202,14 +204,40 @@
                             <br>
                             <div id="qrcode" style="display: flex; justify-content: center;">
                                 
+                            </div>  -->
+
+                            <div class="ticket">
+                                <div class="head-ticket">
+                                    <div class="date-head-info">
+                                        <div class="date-head-ticket">
+                                            <div>Folio</div>
+                                            <span id="folioTxt"></span>
+                                        </div>
+                                        <h5>Expo Tecnología TIC's y Seguridad México 2023</h5>
+                                        <p>del 20 al 24 de agosto</p>
+                                        <i style="margin-right: 3px;" class="fa-solid fa-circle-arrow-right"></i>
+                                        <a href="https://goo.gl/maps/vxr7E45DWivz5dqr8" target="_blank">
+                                            Centro Citybanamex, Ciudad de México
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="body-ticket" style="padding-bottom: 15rem;">
+                                    <div class="logo-evento">
+                                        <img src="../../assets/img/expo_logo_4x.png" width="100%" height="auto">
+                                    </div>
+                                    <div class="mt-4">
+                                        <p style="margin-bottom: -5px;">Acceso único</p>
+                                        <h3 id="nombreTxt"></h3>
+                                    </div>
+                                    <div id="qrcode" style="display: flex; justify-content: center; margin-top: 2rem;">  
+                                    
+                                </div>
                             </div>
+
                         </div>
                         
                     </div>
-                    <div class="footer-card">
-                        <button style="display: none;" id="dowloadBtn" title="Descargar PDF" class="btn btn-success"  onclick="downloadOnPdf()"><i class="bi bi-file-earmark-arrow-down"></i>Descargar</button>
-                    </div> 
-
+                     
                 </div>
             </div>
             

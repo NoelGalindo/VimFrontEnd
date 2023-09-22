@@ -1,25 +1,59 @@
 $(document).ready(function() {
-  let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
-  document.getElementById("basic-addon3").innerHTML=path
+  const urlParams = new URLSearchParams(window.location.search);
+  const id_evento = urlParams.get('evento')
+  let linkCertificate = document.getElementById("linkImgCertificate")
+  let listShowAllForms = document.getElementById("listShowAllForms")
+  linkCertificate.href = "constancias.html?evento=" + id_evento
+  listShowAllForms.href = "formularios.html?evento=" + id_evento
+
+  // Getting the max number of registers admitted on the event
+  eventMaxSize()
 });
 
-async function addRequest(){
+// Getting the max number of registers admitted on the event
+async function eventMaxSize(){
   try{
+      let token = localStorage.getItem('token');
+      const urlParams = new URLSearchParams(window.location.search);
+      const id_evento = urlParams.get('evento')
+      
+      const request = await fetch('http://localhost:8080/formularios/api/eventMaxCapacity/'+ id_evento,{
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer '+token,
+            'Content-Type': 'application/json'
+        }
+      });
+      const response = await request.text()
+      document.getElementById("cupoMaximo").value = response
+      document.getElementById("actualCapacity").value = response
+    }
+    catch(Error){
+      toastifyError("Error al cargar la información.", 1500)
+    }
+  
+}
+
+let formCreteForm = document.getElementById("formCreateForm")
+formCreteForm.addEventListener("submit", addRequest)
+
+async function addRequest(e){
+  try{
+    e.preventDefault()
     let token = localStorage.getItem('token');
-    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
+    const urlParams = new URLSearchParams(window.location.search);
+    const id_evento = urlParams.get('evento')
     let datosGeneralosForm = {};
-    datosGeneralosForm.username = localStorage.getItem("username")
-    datosGeneralosForm.direccion_url = path+document.getElementById('direccionUrl').value;
+    datosGeneralosForm.id_evento = id_evento
     datosGeneralosForm.nombre_formulario = document.getElementById('nombreFormulario').value;
     datosGeneralosForm.informacion_formulario = document.getElementById('informacionFormulario').value;
     datosGeneralosForm.cupo_maximo = document.getElementById('cupoMaximo').value;
     datosGeneralosForm.contador_edicion = document.getElementById("numCampos").textContent
     datosGeneralosForm.numero_preguntas = document.getElementById("numCamposReales").textContent
-    datosGeneralosForm.status = "Creado"
     datosGeneralosForm.estructura_formulario = document.getElementById("formContent").innerHTML
 
 
-    const request = await fetch('http://localhost:8080/solicitud_form/api/agregarForm', {
+    const request = await fetch('http://localhost:8080/formularios/api/createForm', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer '+token,
@@ -31,7 +65,7 @@ async function addRequest(){
     toastifyAllGood("Formulario creado correctamente", 1000)
     // Reload after some time
     setTimeout(function() {
-      window.location.href="dashboard_manager.html"
+      window.location.href="formularios.html?evento="+id_evento
     }, 1300);
   }
   catch(Error){

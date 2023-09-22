@@ -1,7 +1,5 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
-    document.getElementById("basic-addon3").innerHTML=path
     loadUserInformation()
     loadForms();
 });
@@ -9,7 +7,7 @@ $(document).ready(function() {
 async function loadUserInformation(){
   try{  
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/userData', {
+    const request = await fetch('http://localhost:8080/EventosEnviados/userData', {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer '+token
@@ -36,23 +34,23 @@ async function loadUserInformation(){
 async function loadForms(){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/api/pendingForms', {
-        method: 'POST',
+    const request = await fetch('http://localhost:8080/EventosEnviados/api/getPendingEvents', {
+        method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
         }
       });
-      const formularios_activos = await request.json();
-      
+      const response = await request.json();
+      let size = response.length
       let listOfForms = ""
-      for(let form of formularios_activos){
-        let seeFormBtn = `<button style="padding: revert;" value="${form.id_formulario}" title="Ver" onclick="seeFormStructure(this)" class="btn btn-blue btn-circle" ><i class="bi bi-eye-fill"></i></button>`
-        let downloadFormBtn = `<button style="padding: revert;" value="${form.id_formulario}" title="Descagar formulario" onclick="downloadForm(this)" class="btn btn-yellow btn-circle m-1"><i class="bi bi-box-arrow-down"></i></button>`
-        let formDone = `<button style="padding: revert;" value="${form.id_formulario}" title="Realizado" onclick="completeForm(this)" class="btn btn-green btn-circle "><i class="bi bi-check-circle-fill"></i></button>`
+      for(let i=0;i<size;i++){
+        let seeFormBtn = `<button style="padding: revert;" value="${response[i][0]}" title="Ver" onclick="seeFormStructure(this)" class="btn btn-blue btn-circle" ><i class="bi bi-eye-fill"></i></button>`
+        let downloadFormBtn = `<button style="padding: revert;" value="${response[i][0]}" title="Descagar formulario" onclick="downloadForm(this)" class="btn btn-yellow btn-circle m-1"><i class="bi bi-box-arrow-down"></i></button>`
+        let formDone = `<button style="padding: revert;" value="${response[i][0]}" title="Realizado" onclick="completeForm(this)" class="btn btn-green btn-circle "><i class="bi bi-check-circle-fill"></i></button>`
         let formData = `<tr">
-                            <td>${form.id_formulario}</td>
-                            <td>${form.username}</td>
-                            <td>${form.date}</td>
+                            <td>${response[i][0]}</td>
+                            <td>${response[i][1]}</td>
+                            <td>${response[i][2]}</td>
                             <td>${seeFormBtn}${downloadFormBtn}${formDone}</td>
                         </tr>`;
         listOfForms += formData;
@@ -75,10 +73,10 @@ function seeFormStructure(data){
     getFormData(data.value)
 }
 
-async function getFormData(id_formulario){
+async function getFormData(id_evento){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/api/seeFormStructure/' + id_formulario, {
+    const request = await fetch('http://localhost:8080/EventosEnviados/api/getFormInformation/' + id_evento, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer '+token,
@@ -88,8 +86,6 @@ async function getFormData(id_formulario){
     const formData = await request.json();
     console.log(formData)
 
-    const direccion_completa = formData.direccion_url.split('/')
-    document.getElementById('direccionUrl').value = direccion_completa[direccion_completa.length - 1]
     document.getElementById('nombreFormulario').value = formData.nombre_formulario
     document.getElementById('informacionFormulario').value = formData.informacion_formulario
     document.getElementById('cupoMaximo').value = formData.cupo_maximo
@@ -107,9 +103,9 @@ async function getFormData(id_formulario){
 /* Download the form in a txt file */
 async function downloadForm(data){
   try{
-    let id_formulario = data.value
+    let id_evento = data.value
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/api/downloadForm/' + id_formulario, {
+    const request = await fetch('http://localhost:8080/EventosEnviados/api/getFormInformation/' + id_evento, {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -143,13 +139,14 @@ function download(filename, text) {
 async function completeForm(data){
   try{  
     let token = localStorage.getItem('token');
-    let id_formulario = data.value
-    const request = await fetch('http://localhost:8080/admin/api/completeForm', {
-    method: 'POST',
+    let id_evento = data.value
+    const request = await fetch('http://localhost:8080/EventosEnviados/api/eventPublished', {
+    method: 'PUT',
     headers: {
-        'Authorization': 'Bearer '+token
+        'Authorization': 'Bearer '+token,
+        'Content-Type': 'text/plain;charset=UTF-8'
     },
-    body: id_formulario // Se envia el token para obtener el usuario 
+    body: id_evento // Se envia el token para obtener el usuario 
     });
     
     toastifyAllGood("Formulario publicado correctamente", 1000)

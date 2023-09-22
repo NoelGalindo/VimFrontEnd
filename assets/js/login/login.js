@@ -30,7 +30,7 @@ try{
             window.location.href="admin_CP/index.html"
             break;
           case "MANAGER":
-              window.location.href="manager_dashboard/dashboard_manager.html"
+              window.location.href="manager_dashboard/Eventos.html"
             break; 
         }
       }, 1300);

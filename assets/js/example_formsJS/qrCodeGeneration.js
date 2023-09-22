@@ -18,7 +18,6 @@ async function submitFormGafete(e){
     
     try{
       let response = await request.json()
-      console.log(response)
       if(response != null){
         // Hide error msg
         document.getElementById("without-access").style.display = "none"
@@ -31,8 +30,8 @@ async function submitFormGafete(e){
         document.getElementById("nombreTxt").textContent += response.nombre + " " + response.apellid_p + " " + response.apellido_m 
         const qrcode = new QRCode(document.getElementById('qrcode'), {
           text: ""+response.folio,
-          width: 128,
-          height: 128,
+          width: 250,
+          height: 250,
           colorDark : '#000',
           colorLight : '#fff',
           correctLevel : QRCode.CorrectLevel.H
@@ -55,7 +54,7 @@ function downloadOnPdf(){
       filename: "gafete.pdf",
       image: { type: "jpeg", quality: 0.8 },
       enableLinks : true,
-      jsPDF: { format: "A4", orientation: "landscape" }
+      jsPDF: { format: "A4", orientation: "portrait" }
     })
  
     // (C2) GET CONTENT FROM SECTION

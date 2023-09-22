@@ -8,8 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="icon" type="image/png" sizes="437x437" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="../assets/css/estilos.css">
     <link rel="stylesheet" href="../assets/css/header.css">
@@ -62,9 +62,9 @@
                 <li class="list-item">
                     <div class="separator"></div>
                 </li>
-
+    
                 <li class="list-item list-item--click">
-
+                    
                     <div class="item-link-use list-button-click active">
                         <div class="icon-use">
                             <i class="bi bi-card-text"></i>
@@ -76,16 +76,16 @@
 
                     </div>
                     <ul class="list-show-action">
-                        <li class="list-item">
-                            <a id="listShowAllForms" class="list-a-down">
+                        <li class="list-item active">
+                            <a class="list-a-down" href="#.html">
                                 <div class="icon-use">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </div>
                                 <span>Formularios</span>
                             </a>
                         </li>
-                        <li class="list-item active">
-                            <a class="list-a-down" href="#.html">
+                        <li class="list-item ">
+                            <a id="listCreateForm" class="list-a-down">
                                 <div class="icon-use">
                                     <i class="bi bi-plus-square"></i>
                                 </div>
@@ -93,9 +93,9 @@
                             </a>
                         </li>
                     </ul>
-
+                    
                 </li>
-
+                
                 <li class="list-item">
                     <a id="linkImgCertificate">
                         <div class="item-link-use">
@@ -112,6 +112,7 @@
             <i class="fa-solid fa-caret-left"></i>
         </div>
     </div>
+
     <div class="workspace">
         <!-- Header -->
         <div class="header">
@@ -137,12 +138,12 @@
                                 ...
                             </p>
                             <p class="perfil-data-hierarchy">
-                                Administrador
+                                MANAGER
                             </p>
                         </span>
                         <ul>
                             <div class="separator"></div>
-                        
+
                             <li class="list-item">
                                 <button onclick="closeSession()" class="list-a-down-perfil btn">
                                     <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Cerrar sesión</span>
@@ -153,67 +154,79 @@
                 </div>
             </div>
         </div>
+
         <!-- Contenido -->
         <div style="height: 100%;">
-            <div class="content-grid">
-                <div class="card">
-                    <div class="head-card">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        <span style="font-size: 20px; ">Crear formulario</span>
-                    </div>
-                    <form id="formCreateForm">
-                        <div class="body-card">
-                            <!--Información general del formulario-->
-                            <div class="card">
-                                <h5 class="card-header"><b>Información general</b></h5>
-                                <div class="card-body">
-                                    <!--Nombre del formulario-->
-                                    <label style="font-weight: bold;" class="form-label">Nombre del formulario:</label>
-                                    <input type="text" id="nombreFormulario" class="form-control"
-                                        placeholder="Nombre del formulario" required><br>
-                                    <!--información del formulario-->
-                                    <label style="font-weight: bold;" class="form-label">Información del formulario:</label>
-                                    <input type="text" id="informacionFormulario" class="form-control"
-                                        placeholder="Información del formulario" required><br>
-                                    <!--Cupo máximo-->
-                                    <label style="font-weight: bold;" class="form-label">Cupo máximo:</label>
-                                    <input type="number" id="cupoMaximo" class="form-control" placeholder="Cupo máximo" disabled required><br>
-                                    <!-- Preguntas especificas -->
-                                    <label style="font-weight: bold;">Añadir campo de preguntas especificas para un
-                                        determinado participante:</label><br>
-                                    <button style="width: 100%;" type="button" class="btn btn-blue" onclick="openSpecialType()">Añadir <i
-                                            class="bi bi-plus-circle"></i></button>
-                                </div>
-                            </div>
-                            <br>
-                            <!--Opción de agregar nuevos inputs-->
-                            <div class="card">
-                                <h5 class="card-header"><b>Preguntas generales</b></h5>
-                                <div class="card-body">
-                                    <section id="mainButtons">
-
-                                    </section>
-                                    <hr>
-                                    <div id="formContent">
-                                        <div id="generalQuestions">
-                                            
-                                        </div><br><br>
-                                        <div id="specifiedQuestions">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div style="display: flex; justify-content: right;" class="footer-card">
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                        </div>
-                    </form>
+            <section class="p-4">
+                <div style="width: 100%;">
+                    <a id="createButton" style="display: flex; width: 100%; justify-content: center;" 
+                        class="btn-blue"><span>Crear formulario</span></a>
                 </div>
-
-            </div>
+            </section>
+            <section id="formSection" class="ms-4 me-4">
+            </section>
+            
         </div>
         <!-- <div class="footer">Footer</div> -->
+
+        <!--Modal Edit Form-->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalSeeContent" tabindex="-1" aria-labelledby="modalSeeAllContent"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalSeeAllContent"><b>Formulario</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!--Información general del formulario-->
+                        <div class="card">
+                            <h5 class="card-header"><b>Información general</b></h5>
+                            <div class="card-body">
+                                <!--Nombre del formulario-->
+                                <label style="font-weight: bold;" class="form-label">Nombre del formulario:</label>
+                                <input type="text" id="nombreFormulario" class="form-control"
+                                    placeholder="Nombre del formulario"><br>
+                                <!--información del formulario-->
+                                <label style="font-weight: bold;" class="form-label">Información del formulario:</label>
+                                <input type="text" id="informacionFormulario" class="form-control"
+                                    placeholder="Información del formulario"><br>
+                                <!--Cupo máximo-->
+                                <label style="font-weight: bold;" class="form-label">Cupo máximo:</label>
+                                <input type="number" id="cupoMaximo" class="form-control" placeholder="Cupo máximo" disabled><br>
+                                <input type="hidden" id="idFormulario" class="form-control" placeholder="Id formulario">
+                                <!-- Preguntas especificas -->
+                                <label style="font-weight: bold;">Añadir campo de preguntas especificas para un
+                                    determinado participante:</label><br>
+                                <button style="width: 100%;" type="button" class="btn btn-blue" data-bs-toggle="modal"
+                                    data-bs-target="#modalSpecificQuestions">Añadir <i
+                                        class="bi bi-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        <br>
+                        <!--Opción de agregar nuevos inputs-->
+                        <div class="card">
+                            <h5 class="card-header"><b>Preguntas generales</b></h5>
+                            <div class="card-body">
+                                <section id="mainButtons">
+
+                                </section>
+                                <hr>
+                                <div id="formContent">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-red" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="saveForm()" class="btn btn-green">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Modal creación de inputs -->
         <div class="modal fade" id="modalInputs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -377,6 +390,9 @@
             </div>
         </div>
 
+    
+
+
     </div>
     <!--Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -391,8 +407,10 @@
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 
     <script src="../assets/js/userInformation.js"></script> 
+    <script src="../assets/js/JS_Manager/forms/showForms.js"></script>
     <script src="../assets/js/JS_Manager/forms/componentsDesign.js"></script>
-    <script src="../assets/js/JS_Manager/forms/addForm.js"></script>
+    <script src="../assets/js/JS_Manager/forms/editForm.js"></script>
+    <script src="../assets/js/JS_Manager/forms/registerUsers.js"></script>
     <script src="../assets/js/closeSesion.js"></script>
 </body>
 

@@ -1,16 +1,15 @@
-function optionSeeForm(data){
+function optionSeeForm(id_formulario){
     let modalCheckOption = new bootstrap.Modal(document.getElementById('modalSeeContent'), {
         keyboard: false
       });
-      
     modalCheckOption.show();
-    getFormData(data.value)
+    getFormData(id_formulario)
 }
 
 async function getFormData(id_formulario){
     try{
       let token = localStorage.getItem('token');
-      const request = await fetch('http://localhost:8080/solicitud_form/api/getFormData/' + id_formulario,{
+      const request = await fetch('http://localhost:8080/formularios/api/getForm/' + id_formulario,{
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -21,11 +20,10 @@ async function getFormData(id_formulario){
       if(response.status === 403){
         throw new Error('Acceso prohibido');
       }  
-      document.getElementById('id_formulario').value = response.id_formulario
-      const direccion_completa = response.direccion_url.split('/')
-      document.getElementById('direccionUrl').value = direccion_completa[direccion_completa.length - 1]
+      document.getElementById('idFormulario').value = response.id_formulario
       document.getElementById('nombreFormulario').value = response.nombre_formulario
       document.getElementById('informacionFormulario').value = response.informacion_formulario
+      document.getElementById("actualCapacity").value = response.cupo_maximo
       document.getElementById('cupoMaximo').value = response.cupo_maximo
       document.getElementById("numCamposReales").textContent = response.numero_preguntas
       document.getElementById("numCampos").textContent = response.contador_edicion
@@ -42,11 +40,11 @@ async function getFormData(id_formulario){
 async function saveForm(){
   try{
     let token = localStorage.getItem('token');
-    let path = window.location.protocol + '//' + window.location.host +'/conferencias/'
+    const urlParams = new URLSearchParams(window.location.search);
+    const id_evento = urlParams.get('evento')
     let formEdit = {}
-    formEdit.id_formulario = document.getElementById("id_formulario").value
-    formEdit.username = localStorage.getItem("username")
-    formEdit.direccion_url = path+document.getElementById('direccionUrl').value;
+    formEdit.id_formulario = document.getElementById("idFormulario").value
+    formEdit.id_evento = id_evento
     formEdit.nombre_formulario = document.getElementById('nombreFormulario').value;
     formEdit.informacion_formulario = document.getElementById('informacionFormulario').value;
     formEdit.cupo_maximo = document.getElementById('cupoMaximo').value;
@@ -54,7 +52,7 @@ async function saveForm(){
     formEdit.numero_preguntas = document.getElementById("numCamposReales").textContent
     formEdit.estructura_formulario = document.getElementById("formContent").innerHTML
 
-    const request = await fetch('http://localhost:8080/solicitud_form/api/changeForm', {
+    const request = await fetch('http://localhost:8080/formularios/api/updateForm', {
         method: 'PUT',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -104,6 +102,7 @@ async function sendForm(id_formulario){
   }
 
 }
+
 
 
 function toastifyAllGood(textT, durationT){ 
