@@ -5,7 +5,7 @@ $(document).ready(function() {
 async function loadAvailableConferences(){
     try{  
         let token = localStorage.getItem('token');
-        const request = await fetch('http://localhost:8080/availabelEvents/apiEvents', {
+        const request = await fetch('https://encurso.fly.dev/availabelEvents/apiEvents', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'

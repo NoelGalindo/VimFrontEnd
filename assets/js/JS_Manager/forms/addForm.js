@@ -17,7 +17,7 @@ async function eventMaxSize(){
       const urlParams = new URLSearchParams(window.location.search);
       const id_evento = urlParams.get('evento')
       
-      const request = await fetch('http://localhost:8080/formularios/api/eventMaxCapacity/'+ id_evento,{
+      const request = await fetch('https://encurso.fly.dev/formularios/api/eventMaxCapacity/'+ id_evento,{
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -53,7 +53,7 @@ async function addRequest(e){
     datosGeneralosForm.estructura_formulario = document.getElementById("formContent").innerHTML
 
 
-    const request = await fetch('http://localhost:8080/formularios/api/createForm', {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/createForm', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer '+token,

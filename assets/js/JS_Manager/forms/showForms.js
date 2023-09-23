@@ -18,7 +18,7 @@ function noAvailable() {
 async function cargarFormularios(id_evento) {
   try {
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/formularios/api/getAllForms', {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/getAllForms', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -68,7 +68,7 @@ async function deleteForm(id) {
   try {
     let token = localStorage.getItem('token');
     if (confirm('¿Desea eliminar este formulario? ')) {
-      const request = await fetch('http://localhost:8080/formularios/api/deleteForm/' + id, {
+      const request = await fetch('https://encurso.fly.dev/formularios/api/deleteForm/' + id, {
         method: 'DELETE',
         headers: {
           'Authorization': 'Bearer ' + token

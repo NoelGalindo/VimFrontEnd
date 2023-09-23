@@ -21,7 +21,7 @@ async function loadForm(){
     const id_evento = urlParams.get('evento')
     try {
         let token = localStorage.getItem('token');
-        const request = await fetch('http://localhost:8080/formularios/api/getAllForms', {
+        const request = await fetch('https://encurso.fly.dev/formularios/api/getAllForms', {
           method: 'POST',
           headers: {
             'Authorization': 'Bearer ' + token,
@@ -68,7 +68,7 @@ function optionSeeRegisterUsers(id_formulario){
 async function getFormData(id_formulario){
     try{
       let token = localStorage.getItem('token');
-      const request = await fetch('http://localhost:8080/formularios/api/getForm/' + id_formulario,{
+      const request = await fetch('https://encurso.fly.dev/formularios/api/getForm/' + id_formulario,{
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,

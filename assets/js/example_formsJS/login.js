@@ -5,7 +5,7 @@ async function inicioSesionUsuario(){
         datos.email = document.getElementById('txtEmail').value;
       
       
-        const request = await fetch('http://localhost:8080/user/exampleForm/login', {
+        const request = await fetch('https://encurso.fly.dev/user/exampleForm/login', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

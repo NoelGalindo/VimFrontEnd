@@ -7,7 +7,7 @@ $(document).ready(function() {
 async function loadUserInformation(){
   try{  
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/EventosEnviados/userData', {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/userData', {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer '+token
@@ -34,7 +34,7 @@ async function loadUserInformation(){
 async function loadForms(){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/EventosEnviados/api/getPendingEvents', {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/api/getPendingEvents', {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -76,7 +76,7 @@ function seeFormStructure(data){
 async function getFormData(id_evento){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/EventosEnviados/api/getFormInformation/' + id_evento, {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/api/getFormInformation/' + id_evento, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer '+token,
@@ -104,7 +104,7 @@ async function downloadForm(data){
   try{
     let id_evento = data.value
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/EventosEnviados/api/getFormInformation/' + id_evento, {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/api/getFormInformation/' + id_evento, {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -139,7 +139,7 @@ async function completeForm(data){
   try{  
     let token = localStorage.getItem('token');
     let id_evento = data.value
-    const request = await fetch('http://localhost:8080/EventosEnviados/api/eventPublished', {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/api/eventPublished', {
     method: 'PUT',
     headers: {
         'Authorization': 'Bearer '+token,

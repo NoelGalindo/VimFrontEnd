@@ -9,7 +9,7 @@ function optionSeeForm(id_formulario){
 async function getFormData(id_formulario){
     try{
       let token = localStorage.getItem('token');
-      const request = await fetch('http://localhost:8080/formularios/api/getForm/' + id_formulario,{
+      const request = await fetch('https://encurso.fly.dev/formularios/api/getForm/' + id_formulario,{
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -52,7 +52,7 @@ async function saveForm(){
     formEdit.numero_preguntas = document.getElementById("numCamposReales").textContent
     formEdit.estructura_formulario = document.getElementById("formContent").innerHTML
 
-    const request = await fetch('http://localhost:8080/formularios/api/updateForm', {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/updateForm', {
         method: 'PUT',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -82,7 +82,7 @@ async function sendForm(id_formulario){
     form.date = today.toLocaleDateString('en-CA');
     form.estado = "PENDIENTE"
 
-    const request = await fetch('http://localhost:8080/solicitud_form/api/sendForm', {
+    const request = await fetch('https://encurso.fly.dev/solicitud_form/api/sendForm', {
             method: 'POST',
             headers: {
               'Authorization': 'Bearer '+token,

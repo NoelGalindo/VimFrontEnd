@@ -7,7 +7,7 @@ $(document).ready(function() {
 async function loadUserInformation(){
   try{  
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/userData', {
+    const request = await fetch('https://encurso.fly.dev/admin/userData', {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer '+token
@@ -34,7 +34,7 @@ async function loadUserInformation(){
 async function loadForms(){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/EventosEnviados/api/getPublishedEvents', {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/api/getPublishedEvents', {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -75,7 +75,7 @@ function seeFormStructure(data){
 async function getFormData(id_evento){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/EventosEnviados/api/getFormInformation/' + id_evento, {
+    const request = await fetch('https://encurso.fly.dev/EventosEnviados/api/getFormInformation/' + id_evento, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer '+token,

@@ -37,7 +37,7 @@ function uploadCertificateImg(){
     .then(dataFromFirstRequest => {
       information.imagen_constancia = dataFromFirstRequest.data.display_url
 
-      return fetch('http://localhost:8080/eventos/api/certificateUrl', {
+      return fetch('https://encurso.fly.dev/eventos/api/certificateUrl', {
         method: 'PUT', // Or 'GET' or other HTTP methods
         headers: {
           'Authorization': 'Bearer ' + token,

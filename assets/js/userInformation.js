@@ -6,7 +6,7 @@ $(document).ready(function() {
 async function loadUserInformation(){
   try{  
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/solicitud_form/userData', {
+    const request = await fetch('https://encurso.fly.dev/solicitud_form/userData', {
     method: 'POST',
     headers: {
         'Authorization': 'Bearer '+token

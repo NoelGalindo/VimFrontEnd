@@ -6,7 +6,7 @@ $(document).ready(function() {
 async function getUserInfo(){
     try{
         let token = localStorage.getItem('token');
-        const request = await fetch('http://localhost:8080/user/exampleForm/api/userInfo', {
+        const request = await fetch('https://encurso.fly.dev/user/exampleForm/api/userInfo', {
         method: 'POST',
         headers: {
                 'Accept': 'application/json',

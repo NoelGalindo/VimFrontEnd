@@ -9,7 +9,7 @@ $(document).ready(function () {
 async function actualizarUsername() {
   try {
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/eventos/userData', {
+    const request = await fetch('https://encurso.fly.dev/eventos/userData', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token
@@ -84,7 +84,7 @@ function submitForm(e) {
     .then(dataFromFirstRequest => {
       data.imagen_evento = dataFromFirstRequest.data.display_url
 
-      return fetch('http://localhost:8080/eventos/api/addEvent', {
+      return fetch('https://encurso.fly.dev/eventos/api/addEvent', {
         method: 'POST', // Or 'GET' or other HTTP methods
         headers: {
           'Authorization': 'Bearer ' + token,
@@ -117,7 +117,7 @@ function submitForm(e) {
 async function getAllEvents(){
   try {
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/eventos/api/getEvents', {
+    const request = await fetch('https://encurso.fly.dev/eventos/api/getEvents', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + token
@@ -207,7 +207,7 @@ async function getAllEvents(){
 async function sendEvent(id_evento){
   let token = localStorage.getItem('token');
   try{
-    const request = await fetch('http://localhost:8080/eventos/api/sendEvent', {
+    const request = await fetch('https://encurso.fly.dev/eventos/api/sendEvent', {
         method: 'PUT',
         headers: {
           'Authorization': 'Bearer '+token,
@@ -230,7 +230,7 @@ async function eliminarEvento(id){
   try{
     let token = localStorage.getItem('token');
     if(confirm('¿Desea eliminar este formulario? ')){
-        const request = await fetch('http://localhost:8080/eventos/api/deleteEvent/'+id, {
+        const request = await fetch('https://encurso.fly.dev/eventos/api/deleteEvent/'+id, {
                 method: 'DELETE',
                 headers: {
                   'Authorization': 'Bearer '+token

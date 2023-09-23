@@ -55,7 +55,7 @@ function submitForm(e){
 // Send the data to be save
 async function registerUserExample(data){
   try{
-    const request = await fetch('http://localhost:8080/user/exampleForm/api/registerUserExampleForm', {
+    const request = await fetch('https://encurso.fly.dev/user/exampleForm/api/registerUserExampleForm', {
       method: 'POST',
       headers: getHeaders(),
       body: JSON.stringify(data) // Llama esa función para convertir en json.

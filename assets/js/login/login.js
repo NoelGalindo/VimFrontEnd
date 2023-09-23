@@ -5,7 +5,7 @@ try{
   datos.password = document.getElementById('txtPassword').value;
 
 
-    const request = await fetch('http://localhost:8080/auth/login', {
+    const request = await fetch('https://encurso.fly.dev/auth/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

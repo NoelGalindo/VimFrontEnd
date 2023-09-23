@@ -10,7 +10,7 @@ function seeRegisterUsers(formName){
 async function getUsersData(formName){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/solicitud_form/api/getUsersData/' + formName,{
+    const request = await fetch('https://encurso.fly.dev/solicitud_form/api/getUsersData/' + formName,{
         method: 'GET',
         headers: {
             'Authorization': 'Bearer '+token,
@@ -53,7 +53,7 @@ async function validateRegisterUser(data){
     infoUser.folio = folio
     infoUser.tableName = tableName
     
-    const request = await fetch('http://localhost:8080/solicitud_form/api/validateRegisterUser', {
+    const request = await fetch('https://encurso.fly.dev/solicitud_form/api/validateRegisterUser', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer '+token,
@@ -83,7 +83,7 @@ async function refuseRegisterUser(data){
     let infoUser = {};
     infoUser.folio = folio
     infoUser.tableName = tableName
-    const request = await fetch('http://localhost:8080/solicitud_form/api/refuseRegisterUser', {
+    const request = await fetch('https://encurso.fly.dev/solicitud_form/api/refuseRegisterUser', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer '+token,
@@ -114,7 +114,7 @@ function seeConfirmedUsers(data){
 async function getConfirmedUsersData(tableName){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/solicitud_form/api/getConfirmedUsersData/' + tableName,{
+    const request = await fetch('https://encurso.fly.dev/solicitud_form/api/getConfirmedUsersData/' + tableName,{
       method: 'GET',
       headers: {
         'Authorization': 'Bearer '+token,
