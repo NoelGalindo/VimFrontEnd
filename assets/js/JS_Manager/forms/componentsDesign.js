@@ -425,7 +425,7 @@ function addNewParticipant(e){
                             <div class="row">
                                 
                                     <div class="col-sm-6 col-md-4 col-lg-4">
-                                        <h6 style="font-weight: bold;">Campos de entrada</h6>
+                                        <h6 style="font-weight: bold;">Entrada</h6>
                                         <button style="width:100%" type="button" class="btn btn-blue" onclick="openInputtModal('${divId}')">Añadir 
                                             <i class="bi bi-plus-circle"></i></button>
                                     </div>

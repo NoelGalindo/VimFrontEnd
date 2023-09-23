@@ -84,7 +84,6 @@ async function getFormData(id_evento){
       }
       });
     const formData = await request.json();
-    console.log(formData)
 
     document.getElementById('nombreFormulario').value = formData.nombre_formulario
     document.getElementById('informacionFormulario').value = formData.informacion_formulario

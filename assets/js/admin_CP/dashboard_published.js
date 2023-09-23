@@ -45,11 +45,11 @@ async function loadForms(){
       let size = response.length
       let listOfForms = ""
       for(let i = 0;i<size;i++){
-        let seeFormBtn = `<button style="padding: revert;" value="${form.id_formulario}" title="Ver" onclick="seeFormStructure(this)" class="btn btn-blue btn-circle" ><i class="bi bi-eye-fill"></i></button>`
+        let seeFormBtn = `<button style="padding: revert;" value="${response[i][0]}" title="Ver" onclick="seeFormStructure(this)" class="btn btn-blue btn-circle" ><i class="bi bi-eye-fill"></i></button>`
         let formData = `<tr">
-                            <td>${form.id_formulario}</td>
-                            <td>${form.username}</td>
-                            <td>${form.date}</td>
+                            <td>${response[i][0]}</td>
+                            <td>${response[i][1]}</td>
+                            <td>${response[i][2]}</td>
                             <td>${seeFormBtn}</td>
                         </tr>`;
         listOfForms += formData;
@@ -57,7 +57,7 @@ async function loadForms(){
       document.getElementById("contentTable").outerHTML += listOfForms
       toastifyCorrectLoad("Formularios cargados correctamente", 1000)
   }catch(Error){
-      toastifyError("Error al cargar los formularios", 1000)
+    toastifyError("Error al cargar los formularios", 1000)
   }
     
 }
@@ -72,10 +72,10 @@ function seeFormStructure(data){
     getFormData(data.value)
 }
 
-async function getFormData(id_formulario){
+async function getFormData(id_evento){
   try{
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/admin/api/seeFormStructure/' + id_formulario, {
+    const request = await fetch('http://localhost:8080/EventosEnviados/api/getFormInformation/' + id_evento, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer '+token,
@@ -83,10 +83,7 @@ async function getFormData(id_formulario){
       }
       });
     const formData = await request.json();
-    console.log(formData)
 
-    const direccion_completa = formData.direccion_url.split('/')
-    document.getElementById('direccionUrl').value = direccion_completa[direccion_completa.length - 1]
     document.getElementById('nombreFormulario').value = formData.nombre_formulario
     document.getElementById('informacionFormulario').value = formData.informacion_formulario
     document.getElementById('cupoMaximo').value = formData.cupo_maximo

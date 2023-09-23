@@ -5,7 +5,7 @@ $(document).ready(function() {
 async function loadAvailableConferences(){
     try{  
         let token = localStorage.getItem('token');
-        const request = await fetch('http://localhost:8080/availabelConferences/conferences', {
+        const request = await fetch('http://localhost:8080/availabelEvents/apiEvents', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -16,16 +16,21 @@ async function loadAvailableConferences(){
         let numbConference = 0;
         let listOfConferences = ""
         for(let conferences of response){
-            listOfConferences += `<div class="col-md-6 col-lg-6 col-sm-12  p-1">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${response[numbConference][1]}</h5>
-                                            <p class="card-text">${response[numbConference][2]}</p>
-                                            <p class="card-text">Cupo Máximo: ${response[numbConference][3]}</p>
-                                            <a href="${response[numbConference][0]}" class="btn btn-primary">Registrarme</a>
+            listOfConferences += `
+                                <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
+                                    <div class="card h-100">
+                                        <img src="${response[numbConference][4]}" class="card-img-top" alt="..." width="100%" height="100%">
+                                        <div class="card-body ">
+                                        <h5 class="card-title">${response[numbConference][1]}</h5>
+                                        <p class="card-text">${response[numbConference][2]}</p>
+                                        <p class="card-text">Cupo Máximo: ${response[numbConference][3]}</p>
+                                        <div style="display: flex; justify-content: space-between;">
+                                        <a href="${response[numbConference][0]}" class="btn btn-primary">Ir al registro</a>
+                                        </div>
+                                        
                                         </div>
                                     </div>
-                                </div>   `
+                                </div>`
             numbConference++;
         }
         document.getElementById("conferencesAvailable").innerHTML += listOfConferences
