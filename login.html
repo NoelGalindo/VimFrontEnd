@@ -18,10 +18,14 @@
     <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="assets/css/loading.css">
 </head>
 
 <body>
-    <main class="page registration-page" style="height: 100vh;">
+    <div id="contentLoad" class="contenedor_loader" style="display: none;">
+        <div class="loader" id="loaderContainer"></div>
+    </div>
+    <main id="mainSection" class="page registration-page" style="height: 100vh;">
         <!-- Start: Registration Form with Photo -->
         <section class="register-photo" style="height: 100vh;">
             <!-- Start: Form Container -->

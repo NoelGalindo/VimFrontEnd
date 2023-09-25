@@ -20,9 +20,13 @@
     <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
     <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+    <link rel="stylesheet" href="assets/css/loading.css">
 </head>
 
 <body>
+    <div id="contentLoad" class="contenedor_loader" >
+        <div class="loader" id="loaderContainer"></div>
+    </div>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
         <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><img src="assets/img/Logos/Logo_EnCurso_txt.png" style="width: 130px;">
             <div class="collapse navbar-collapse" id="navcol-1">
@@ -39,7 +43,7 @@
             </div>
         </div>
     </nav>
-    <main class="page contact-us-page">
+    <main id="mainSection" class="page contact-us-page">
         <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
@@ -55,7 +59,7 @@
             </div>
         </section>
     </main><!-- Start: Footer Dark -->
-    <footer class="page-footer dark">
+    <footer id="footerContent" class="page-footer dark">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3">
