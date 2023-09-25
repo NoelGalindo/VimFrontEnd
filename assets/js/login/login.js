@@ -1,8 +1,15 @@
-async function inicioSesion(){
-try{
-  let datos = {};
-  datos.username = document.getElementById('txtUsuario').value;
-  datos.password = document.getElementById('txtPassword').value;
+async function inicioSesion() {
+  try {
+    let load = document.getElementById("loaderContainer")
+    let mainSection = document.getElementById("mainSection")
+    let contentLoad = document.getElementById("contentLoad")
+    contentLoad.style.display = "flex"
+    mainSection.style.filter = "blur(2px)"
+    load.style.display = "block"
+
+    let datos = {};
+    datos.username = document.getElementById('txtUsuario').value;
+    datos.password = document.getElementById('txtPassword').value;
 
 
     const request = await fetch('https://encurso.fly.dev/auth/login', {
@@ -13,36 +20,39 @@ try{
       },
       body: JSON.stringify(datos) // Llama esa función para convertir en json.
     });
-    
-      const response = await request.json();
-      if(response.status === 403){
-        throw new Error('Acceso prohibido');
+
+    const response = await request.json();
+    contentLoad.style.display = "none"
+    load.style.display = "none"
+    mainSection.style.filter = ""
+    if (response.status === 403) {
+      throw new Error('Acceso prohibido');
+    }
+    localStorage.setItem("token", response.token)
+    localStorage.setItem("role", response.role)
+
+    // Toastify
+    toastifyAllGood("Bienvenido", 1000)
+
+    setTimeout(() => {
+      switch (localStorage.getItem("role")) {
+        case "ADMIN":
+          window.location.href = "admin_CP/index.html"
+          break;
+        case "MANAGER":
+          window.location.href = "manager_dashboard/Eventos.html"
+          break;
       }
-      localStorage.setItem("token", response.token)
-      localStorage.setItem("role", response.role)
+    }, 1300);
 
-      // Toastify
-      toastifyAllGood("Bienvenido", 1000)
 
-      setTimeout(() => {
-        switch(localStorage.getItem("role")){
-          case "ADMIN":
-            window.location.href="admin_CP/index.html"
-            break;
-          case "MANAGER":
-              window.location.href="manager_dashboard/Eventos.html"
-            break; 
-        }
-      }, 1300);
-        
-             
-      
-  }catch(Error){
+
+  } catch (Error) {
     toastifyError("Error al iniciar sesión", 1000)
   }
 }
 
-function toastifyAllGood(textT, durationT){ 
+function toastifyAllGood(textT, durationT) {
   Toastify({
     text: textT,
     duration: durationT,
@@ -55,11 +65,11 @@ function toastifyAllGood(textT, durationT){
     style: {
       background: "linear-gradient(to right, #09cd08, #0abf2b, #0b8928)",
     },
-    onClick: function(){} // Callback after click
+    onClick: function () { } // Callback after click
   }).showToast();
 }
 
-function toastifyError(textT, durationT){
+function toastifyError(textT, durationT) {
   Toastify({
     text: textT,
     duration: durationT,
@@ -72,6 +82,6 @@ function toastifyError(textT, durationT){
     style: {
       background: "linear-gradient(to right, #830225, #e40e4f, #890b26)",
     },
-    onClick: function(){} // Callback after click
+    onClick: function () { } // Callback after click
   }).showToast();
 }

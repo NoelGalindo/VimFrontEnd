@@ -4,6 +4,13 @@ $(document).ready(function() {
 
 async function loadAvailableConferences(){
     try{  
+        let load = document.getElementById("loaderContainer")
+        let mainSection = document.getElementById("mainSection")
+        let footerSection = document.getElementById("footerContent")
+        let contentLoad = document.getElementById("contentLoad")
+        mainSection.style.filter = "blur(2px)"
+        footerSection.style.filter = "blur(2px)"
+        load.style.display = "block"
         let token = localStorage.getItem('token');
         const request = await fetch('https://encurso.fly.dev/availabelEvents/apiEvents', {
             method: 'GET',
@@ -11,8 +18,11 @@ async function loadAvailableConferences(){
                 'Accept': 'application/json'
             },
         });
-      
         const response = await request.json();
+        load.style.display = "none"
+        contentLoad.style.display = "none"
+        mainSection.style.filter = ""
+        footerSection.style.filter = ""
         let numbConference = 0;
         let listOfConferences = ""
         for(let conferences of response){
