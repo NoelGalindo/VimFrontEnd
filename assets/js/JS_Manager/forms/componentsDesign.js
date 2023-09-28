@@ -50,7 +50,7 @@ let formCheckOptiion = document.getElementById("formCheckOption")
 formCheckOptiion.addEventListener("submit", addOptionCheckBox)
 
 let formSelectOption = document.getElementById("formSelectOption")
-formCheckOptiion.addEventListener("submit", addOptionSelect)
+formSelectOption.addEventListener("submit", addOptionSelect)
 
 /* Opening the modals to add the diferent options */
 function openInputtModal(name){
@@ -206,7 +206,8 @@ function addOptionCheckBox(e){
     e.preventDefault()
     let optionCheck = document.getElementById("nameOption").value
     let idPrincipal = document.getElementById("divName").value
-    let idDivSeleccion = "divSeleccion_" + idPrincipal.charAt(idPrincipal.length - 1)
+    let targetId = idPrincipal.split('_')
+    let idDivSeleccion = "divSeleccion_" + targetId[1]
     let elementoPadre = document.getElementById(idDivSeleccion)
     let divPadreCheckBox = document.createElement("div")
     divPadreCheckBox.innerHTML += `<input type="checkbox"> <label>${optionCheck}</labe> <br>`
@@ -361,7 +362,8 @@ function addOptionSelect(e){
     e.preventDefault()
     let optionSelect = document.getElementById("nameOptionSelect").value
     let idPrincipal = document.getElementById("divName").value
-    let idDivSeleccion = "SelectNumber_" + idPrincipal.charAt(idPrincipal.length - 1)
+    let targetId = idPrincipal.split('_')
+    let idDivSeleccion = "SelectNumber_" + targetId[1]
     let elementoPadre = document.getElementById(idDivSeleccion)
     elementoPadre.add(new Option(optionSelect))
     /* Hide the modals */
