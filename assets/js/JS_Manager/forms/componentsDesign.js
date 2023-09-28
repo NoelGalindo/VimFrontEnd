@@ -204,12 +204,12 @@ function agregarOpcion(datos){
 /* Add the option to the main content */
 function addOptionCheckBox(e){
     e.preventDefault()
+    let divPadreCheckBox = document.createElement("div")
     let optionCheck = document.getElementById("nameOption").value
     let idPrincipal = document.getElementById("divName").value
     let targetId = idPrincipal.split('_')
     let idDivSeleccion = "divSeleccion_" + targetId[1]
     let elementoPadre = document.getElementById(idDivSeleccion)
-    let divPadreCheckBox = document.createElement("div")
     divPadreCheckBox.innerHTML += `<input type="checkbox"> <label>${optionCheck}</labe> <br>`
     elementoPadre.appendChild(divPadreCheckBox)
     /* Hide the modals */
