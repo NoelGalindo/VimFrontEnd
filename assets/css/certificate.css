@@ -1,0 +1,57 @@
+.container-certificate{
+    position: relative;
+    text-align: center;
+    color: black;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.qrCodeArea {
+    position: absolute;
+    bottom: 45px;
+    left: 34px;
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+}
+
+
+.text-box {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    top: 430px;
+    left: 490px;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 300px;
+}
+
+
+
+@media screen and (min-width: 300px) and (max-width: 450px) {
+    .qrCodeArea {
+        position: absolute;
+        bottom: 30px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (min-width: 535px) and (max-width: 575px) {
+    .qrCodeArea {
+        position: absolute;
+        bottom: 46px;
+        left: 35px;
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+    }
+}
