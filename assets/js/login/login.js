@@ -1,9 +1,9 @@
 async function inicioSesion() {
+  /* Loading feature */
+  let load = document.getElementById("loaderContainer")
+  let mainSection = document.getElementById("mainSection")
+  let contentLoad = document.getElementById("contentLoad")
   try {
-    /* Loading feature */
-    let load = document.getElementById("loaderContainer")
-    let mainSection = document.getElementById("mainSection")
-    let contentLoad = document.getElementById("contentLoad")
     contentLoad.style.display = "flex"
     mainSection.style.filter = "blur(2px)"
     load.style.display = "block"
@@ -51,6 +51,10 @@ async function inicioSesion() {
 
 
   } catch (Error) {
+    /* Loading feature ends*/
+    contentLoad.style.display = "none"
+    load.style.display = "none"
+    mainSection.style.filter = ""
     toastifyError("Error al iniciar sesión", 1000)
   }
 }

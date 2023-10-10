@@ -55,9 +55,8 @@ async function loadForm() {
                       </div>
                       <div class="card-body">
                         <div class="d-flex justify-content-evenly flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
-                          <button title="Editar" onclick="optionSeeRegisterUsers()" class="btn btn-green m-1">Confirmar usuarios</button>
-                          <button title="Editar" onclick="" class="btn btn-blue m-1">Usuarios confirmados</button>
-                          <button title="Editar" onclick="" class="btn btn-yellow m-1">Entrega de Constancias/Gafet</button>
+                          <button title="Confirmar usuarios" onclick="optionSeeRegisterUsers(${id_evento})" class="btn btn-green m-1">Confirmar usuarios</button>
+                          <button title="Usuarios confirmados" onclick="optionSeeConfirmedUsers(${id_evento})" class="btn btn-blue m-1">Usuarios confirmados</button>
                         </div>
                       </div>
                   </div>`
@@ -71,14 +70,6 @@ async function loadForm() {
 
 }
 
-function optionSeeRegisterUsers(id_formulario) {
-  let modalCheckOption = new bootstrap.Modal(document.getElementById('seeRegisterUsers'), {
-    keyboard: false
-  });
-
-  modalCheckOption.show();
-
-}
 
 async function getFormData(id_formulario) {
   try {

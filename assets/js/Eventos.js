@@ -1,18 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function () {
     loadAvailableConferences()
 });
 
-async function loadAvailableConferences(){
-    try{  
-        /* Loading feature */ 
-        let load = document.getElementById("loaderContainer")
-        let mainSection = document.getElementById("mainSection")
-        let footerSection = document.getElementById("footerContent")
-        let contentLoad = document.getElementById("contentLoad")
+async function loadAvailableConferences() {
+    let load = document.getElementById("loaderContainer")
+    let mainSection = document.getElementById("mainSection")
+    let footerSection = document.getElementById("footerContent")
+    let contentLoad = document.getElementById("contentLoad")
+    try {
+        /* Loading feature */
+
         mainSection.style.filter = "blur(2px)"
         footerSection.style.filter = "blur(2px)"
         load.style.display = "block"
-        
+
         let token = localStorage.getItem('token');
         const request = await fetch('http://localhost:8080/availabelEvents/apiEvents', {
             method: 'GET',
@@ -20,8 +21,9 @@ async function loadAvailableConferences(){
                 'Accept': 'application/json'
             },
         });
-      
+
         const response = await request.json();
+        console.log(response)
         /* Loading feature */
         load.style.display = "none"
         contentLoad.style.display = "none"
@@ -30,7 +32,7 @@ async function loadAvailableConferences(){
 
         let numbConference = 0;
         let listOfConferences = ""
-        for(let conferences of response){
+        for (let conferences of response) {
             listOfConferences += `
                                 <div class="col-sm-12 col-md-6 col-lg-6 mb-4">
                                     <div class="card h-100">
@@ -50,41 +52,46 @@ async function loadAvailableConferences(){
         }
         document.getElementById("conferencesAvailable").innerHTML += listOfConferences
         toastifyCorrectLoad("Conferencias cargadas correctamente", 1000)
-      }catch(Error){
-          toastifyError("Error al cargar las conferencias", 1000)
-      }
+    } catch (Error) {
+        /* Loading feature */
+        load.style.display = "none"
+        contentLoad.style.display = "none"
+        mainSection.style.filter = ""
+        footerSection.style.filter = ""
+        toastifyError("Error al cargar las conferencias", 1000)
+    }
 }
 
-function toastifyCorrectLoad(textT, durationT){ 
+function toastifyCorrectLoad(textT, durationT) {
     Toastify({
-      text: textT,
-      duration: durationT,
-      destination: "#",
-      newWindow: false,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "linear-gradient(to right, #1ab7dc, #0abfb7, #09839d)",
-      },
-      onClick: function(){} // Callback after click
+        text: textT,
+        duration: durationT,
+        destination: "#",
+        newWindow: false,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #1ab7dc, #0abfb7, #09839d)",
+        },
+        onClick: function () { } // Callback after click
     }).showToast();
 }
-  
-function toastifyError(textT, durationT){
+
+function toastifyError(textT, durationT) {
     Toastify({
-      text: textT,
-      duration: durationT,
-      destination: "#",
-      newWindow: false,
-      close: true,
-      gravity: "top", // `top` or `bottom`
-      position: "right", // `left`, `center` or `right`
-      stopOnFocus: true, // Prevents dismissing of toast on hover
-      style: {
-        background: "linear-gradient(to right, #830225, #e40e4f, #890b26)",
-      },
-      onClick: function(){} // Callback after click
+        text: textT,
+        duration: durationT,
+        destination: "#",
+        newWindow: false,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #830225, #e40e4f, #890b26)",
+        },
+        onClick: function () { } // Callback after click
     }).showToast();
 }
