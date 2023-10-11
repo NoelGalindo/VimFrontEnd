@@ -10,7 +10,7 @@ function optionSeeRegisterUsers(id_evento) {
 async function getInformationRegisterUsers(id_evento) {
   try {
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/formularios/api/administration/getRegisterUsers/' + id_evento, {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/administration/getRegisterUsers/' + id_evento, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -89,7 +89,7 @@ async function acceptUser(data) {
     datos.id_evento = info[0]
     datos.folio = info[1]
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/formularios/api/administration/confirmUser', {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/administration/confirmUser', {
       method: 'PUT',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -123,7 +123,7 @@ async function refusetUser(data) {
     datos.id_evento = info[0]
     datos.folio = info[1]
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/formularios/api/administration/refuseUser', {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/administration/refuseUser', {
       method: 'DELETE',
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -155,7 +155,7 @@ function optionSeeConfirmedUsers(id_evento) {
 async function getInformationConfirmedUsers(id_evento) {
   try {
     let token = localStorage.getItem('token');
-    const request = await fetch('http://localhost:8080/formularios/api/administration/getConfirmedUsers/' + id_evento, {
+    const request = await fetch('https://encurso.fly.dev/formularios/api/administration/getConfirmedUsers/' + id_evento, {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + token,

@@ -10,7 +10,7 @@ async function submitFormGafete(e){
     data.folio = document.getElementById('folio').value
     data.email = document.getElementById('email').value
     
-    const request = await fetch('http://localhost:8080/user/event201/api/generalData', {
+    const request = await fetch('https://encurso.fly.dev/user/event201/api/generalData', {
         method: 'POST',
         headers: getHeaders(),
         body: JSON.stringify(data) // Llama esa función para convertir en json.

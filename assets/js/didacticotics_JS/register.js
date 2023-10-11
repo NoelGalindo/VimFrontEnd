@@ -85,7 +85,7 @@ function registerForm(e) {
         .then(dataFromSecondRequest => {
             // Step 3: Use data from the second fetch to make a third fetch
             register.voucher = dataFromSecondRequest.data.display_url
-            return fetch('http://localhost:8080/user/event201/api/register', {
+            return fetch('https://encurso.fly.dev/user/event201/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

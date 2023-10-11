@@ -12,7 +12,7 @@ async function inicioSesionUsuario() {
         datos.email = document.getElementById('txtEmail').value;
 
 
-        const request = await fetch('http://localhost:8080/user/event201/api/login', {
+        const request = await fetch('https://encurso.fly.dev/user/event201/api/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
