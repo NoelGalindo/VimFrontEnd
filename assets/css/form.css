@@ -65,7 +65,7 @@
     background: #cdefbc;
     border: 1px solid #b9d8aa;
     border-radius: 8px;
-    color: #93b781;
+    color: #000000;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -113,7 +113,7 @@
     background: #bee3ac;
     border: 1px solid #b9d8aa;
     border-radius: 8px;
-    color: #93b781;
+    color: white;
     margin-top: 5px;
     margin-bottom: 5px;
     cursor: pointer;

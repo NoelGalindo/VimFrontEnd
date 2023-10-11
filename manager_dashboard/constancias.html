@@ -159,29 +159,25 @@
                 <div style="background-color: white; border-radius: 5px;" class="p-4">
                     <h4>Visualiza tu certificado</h4>
                     <p></p>
-                    <button style="width: 100%;" class="btn btn-blue"
-                        onclick="openCertificateModal()">Constancia</button>
+                    <button style="width: 100%;" class="btn btn-blue" onclick="openCertificateModal()">Constancia</button>
                 </div>
             </section>
 
             <section class="mt-4 ms-4 me-4">
                 <div style="background-color: white; border-radius: 5px;" class="p-4">
                     <h4>Selecciona la imagen que se usara como base para la constancia.</h4><br>
-                    <p class="text-danger">Favor de descargar y seguir la estructura de la constancia para evitar
-                        errores en la visualización.</p>
+                    <p class="text-danger">Favor de descargar y seguir la estructura de la constancia para evitar errores en la visualización.</p>
                     <p class="text-danger">Resolución de la imágen: 1600 x 1200</p>
-                    <input id="certificateImage" class="form-control" type="file">
+                    <input id="certificateImage" class="form-control" type="file" >
                     <br>
-                    <div
-                        class="d-flex justify-content-evenly flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
-                        <a href="../assets/img/constancias/Estructura_constancia.jpg"
-                            download="estrucutura_constancia.jpg" class="btn btn-yellow">Descargar estrutura</a>
+                    <div class="d-flex justify-content-evenly flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
+                        <a href="../assets/img/constancias/Estructura_constancia.jpg" download="estrucutura_constancia.jpg" class="btn btn-yellow">Descargar estrutura</a>
                         <button class="btn btn-green" onclick="uploadCertificateImg()">Subir</button>
                     </div>
                 </div>
             </section>
         </div>
-
+        
 
         <!-- Modal -->
         <div class="modal fade" id="certificateModal" tabindex="-1" aria-labelledby="exampleModalLabel"

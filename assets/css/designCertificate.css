@@ -1,0 +1,35 @@
+.img-background {
+    background-image: url("constancia-vacia.jpg");
+    background-repeat: no-repeat;
+    width: 1586px;
+    height: 1224px;
+  
+  }
+  
+  .text-box {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    top: 455px;
+    left: 490px;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 300px;
+  }
+  
+  .text {
+    font-size: 70px;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .qrCodeArea {
+    position: relative;
+    top: 624px;
+    left: 61px;
+    display: flex;
+    width: 240px;
+    height: 240px;
+    border-radius: 10px;
+    background-color: green;
+  }

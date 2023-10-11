@@ -18,12 +18,18 @@
     <link rel="stylesheet" href="../assets/css/footer.css">
     <link rel="stylesheet" href="../assets/css/form.css">
     <link rel="stylesheet" href="../assets/css/modal.css">
+    <link rel="stylesheet" href="../assets/css/loading.css">
     <script src="https://kit.fontawesome.com/37cd862f09.js" crossorigin="anonymous"></script>
     <script src="../assets/js/nav.js"></script>
     <title>Centro Digital de Monitoreo</title>
 </head>
 
 <body>
+
+    <div id="contentLoad" class="contenedor_loader" style="display: none;">
+        <div class="loader" id="loaderContainer"></div>
+    </div>
+
     <!-- Menú expandido -->
     <div id="side-menu" class="menu-expanded">
         <div class="title-menu">
@@ -69,12 +75,12 @@
                             <div class="icon-use">
                                 <i class="bi bi-textarea-resize"></i>
                             </div>
-                            <span>Formularios</span>
+                            <span>Administración</span>
                         </div>
                     </a>
                 </li>
                 
-                <li class="list-item">
+                <!-- <li class="list-item">
                     <a id="linkImgCertificate">
                         <div class="item-link-use">
                             <div class="icon-use">
@@ -83,7 +89,7 @@
                             <span>Constancias</span>
                         </div>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
         <div id="tab-menu" class="tab">
@@ -91,7 +97,7 @@
         </div>
     </div>
 
-    <div class="workspace">
+    <div id="mainSection" class="workspace">
         <!-- Header -->
         <div class="header">
             <div class="title-header">
@@ -141,18 +147,7 @@
             </section>
             <br>
             <section id="actionsForm" class="ms-4 me-4">
-                <div class="card">
-                    <div class="card-header">
-                      <i>Acciones</i>
-                    </div>
-                    <div class="card-body">
-                      <div class="d-flex justify-content-evenly flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
-                        <button title="Editar" onclick="optionSeeRegisterUsers(4)" class="btn btn-green m-1">Confirmar usuarios</button>
-                        <button title="Editar" onclick="" class="btn btn-blue m-1">Usuarios confirmados</button>
-                        <button title="Editar" onclick="" class="btn btn-yellow m-1">Entrega de Constancias/Gafet</button>
-                      </div>
-                    </div>
-                </div>
+                
             </section>
             
         </div>
@@ -217,30 +212,16 @@
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Usuarios registrados</h5>
+                        <h5 style="font-weight: bold;" class="modal-title" id="staticBackdropLabel">Usuarios registrados</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="overflow: scroll;">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Apellido P</th>
-                                    <th>Apellido M</th>
-                                    <th>Sexo</th>
-                                    <th>Email</th>
-                                    <th>Fecha</th>
-                                    <th>Voucher</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tableRegisterUsers">
+                        <section id="tableRegisterUsers">
 
-                            </tbody>
-                        </table>
+                        </section>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="reloadPage()" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -256,24 +237,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" style="overflow: scroll;">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Apellido P</th>
-                                    <th>Apellido M</th>
-                                    <th>Sexo</th>
-                                    <th>Email</th>
-                                    <th>Fecha</th>
-                                    <th>Voucher</th>
-                                    <th>Asistencia</th>
-                                    <th>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tableConfirmedUsers">
+                        <section id="tableConfirmedUsers">
 
-                            </tbody>
-                        </table>
+                        </section>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -296,8 +262,10 @@
     <script type="text/javascript" src="../assets/js/jquery-3.7.0.min.js"> </script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 
+    <script src="../assets/js/toastify.js"></script>
     <script src="../assets/js/userInformation.js"></script> 
     <script src="../assets/js/JS_Manager/Event_administration/formActions.js"></script>
+    <script src="../assets/js/JS_Manager/Event_administration/confirmUsersActions.js"></script>
     <script src="../assets/js/closeSesion.js"></script>
 </body>
 

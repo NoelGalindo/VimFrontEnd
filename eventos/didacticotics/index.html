@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="icon" type="image/png" sizes="437x437" href="../../assets/img/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/form.css">
+    <link rel="stylesheet" href="../../assets/css/loading.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Encurso - Registro</title>
+</head>
+
+<body style="height: auto;">
+
+
+    <!-- Workspace -->
+    <div class="workspace">
+        <div class="header">
+            <div class="title-header">
+                <img style="width: 150px; height: auto;" src="../../assets/img/logo_EnCurso_txt.png">
+            </div>
+            <div class="tools-header">
+
+                <a href="login.html" type="button" class="btn btn-warning">Login</a>
+
+
+            </div>
+        </div>
+
+        <div id="contentLoad" class="contenedor_loader" style="display: none;">
+            <div class="loader" id="loaderContainer"></div>
+        </div>
+
+        <!-- Content -->
+        <div id="mainSection" style="height: 100%;">
+            <div class="d-flex justify-content-center mt-2">
+                <h1 class="text-info">Registro</h1>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <!-- <div class="head-card">
+                        
+                    </div> -->
+                    <div class="body-card">
+                        <form id="registerForm">
+                            <label style="font-weight: bold;">Nombre:</label>
+                            <input id="name" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Apellido Paterno:</label>
+                            <input id="lastName_P" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Apellido Materno:</label>
+                            <input id="lastName_M" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Correo electrónico:</label>
+                            <input id="email" type="email" class="form-text form-control" required>
+                            <label id="duplicatedMsj" style="display: none;" class="text-danger">Este correo electrónico ya se encuentra registrado.</label><br>
+                            <label style="font-weight: bold;">Categoría:</label><br>
+                            <div class="ms-2">
+                                <input value="Docente" type="radio" name="Categoria" required> <label>Docente</label><br>
+                                <input value="Estudiante" type="radio" name="Categoria"> <label>Estudiante</label><br>
+                                <input value="Asociado" type="radio" name="Categoria"> <label>Asociado</label>
+                            </div>
+
+                            <br>
+                            <label style="font-weight: bold;">Adjunta tu credencial de asociado y/o docente:</label>
+                            <input id="credentialImg" type="file" class="form-text form-control" accept="image/png, image/gif, image/jpeg" required><br>
+                            <label style="font-weight: bold;">Nivel Educativo en el que laboras:</label>
+                            <select id="educationLevel" class="form-control" required>
+                                <option disabled>-- Selecciona una opción --</option>
+                                <option value="Educación Preescolar">Educación Preescolar</option>
+                                <option value="Educación Primaria">Educación Primaria</option>
+                                <option value="Educación Secundaria">Educación Secundaria</option>
+                                <option value="Educación Media Superior">Educación Media Superior</option>
+                                <option value="Educación Superior">Educación Superior</option>
+                            </select><br>
+                            <label style="font-weight: bold;">Estado:</label>
+                            <input id="state" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Institución en la que estudias o laboras:</label>
+                            <input id="institution" type="text" class="form-text form-control" required> <br>
+                            <label style="font-weight: bold;">Voucher de pago</label>
+                            <p class="text-danger">Asegurese de que su imagen sea la correcta</p>
+                            <input id="voucherImg" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" required/><br><br>
+                            <div id="imgSpace" style="display: none; justify-content: center;">
+                                <img id="img" width="auto"  height="250px"/>
+                            </div>
+                            <div class="d-flex flex-column mt-3">
+                                <button type="submit" class="btn-green">Registrarme</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="footer-card d-flex justify-content-center"><i>@EncursoForms</i></div>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="footer">Footer</div> -->
+    </div>
+
+    <!--Modal de creado-->
+    <div class="modal fade" id="modalUserRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje del sistema</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Te has registrado correctamente</h4>
+                    <p>Tu solicitud de registro al evento ah sido enviada, una vez que el administrador del evento valide tu información recibiras un correo de confirmación con los datos 
+                        necesarios para iniciar sesion y puedas descargar tu gafete de acceso.
+                    </p>
+                    <hr>
+                    <p class="mb-0">Cualquier duda o pregunta no dude en contactarnos.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Modal de creado-->
+    <div class="modal fade" id="modalUserRegisterError" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje del sistema</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">No fue posible registrarse</h4>
+                    <p>Por el momento no fue posible realizar el registro al evento, intentelo mas tarde.
+                    </p>
+                    <hr>
+                    <p class="mb-0">Si el error persiste no dude en contactarnos.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/37cd862f09.js" crossorigin="anonymous"></script>
+
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Script save data user -->
+    <script src="../../assets/js/toastify.js"></script>
+    <script src="../../assets/js/didacticotics_JS/register.js"></script>
+
+</body>
+
+</html>

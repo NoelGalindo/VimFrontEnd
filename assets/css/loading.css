@@ -36,7 +36,6 @@
     0%,10%,90%,100% {inset:0}
     40%,60% {inset:-10px}
   }
-  
   @keyframes l39-2 {
     0%,40%  {transform: rotate(0)}
     60%,100%{transform: rotate(90deg)}
