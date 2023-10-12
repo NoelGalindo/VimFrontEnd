@@ -34,7 +34,10 @@ async function submitFormCertificate(e) {
         })
             .then(canvas => {
                 saveAs(canvas.toDataURL(), 'Constancia.png');
-                captura.style.display = 'none'
+                setTimeout(() => {
+                    captura.style.display = 'none'
+                },4000);
+                
             });
 
     } catch (error) {
