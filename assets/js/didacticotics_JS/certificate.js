@@ -18,7 +18,7 @@ async function submitFormCertificate(e) {
         let response = await request.json()
         let currentPath = window.location.pathname
         let parts = currentPath.split('/')
-        let path = window.location.protocol + '//' + window.location.host + '/' +parts[1]+parts[2]+'/'
+        let path = window.location.protocol + '//' + window.location.host + '/' +parts[1]+'/'+parts[2]+'/'
         
         let fullName = response.nombre + " " + response.apellido_p + " "+ response.apellido_m
         document.getElementById("nombrePersona").textContent = fullName
