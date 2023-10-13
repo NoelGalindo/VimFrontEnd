@@ -34,13 +34,13 @@ async function loadAvailableConferences() {
                                     <div class="card h-100">
                                         <img src="${response[numbConference][4]}" class="card-img-top" alt="..." width="100%" height="100%">
                                         <div class="card-body ">
-                                        <h5 class="card-title">${response[numbConference][1]}</h5>
-                                        <p class="card-text">${response[numbConference][2]}</p>
-                                        <p class="card-text">Cupo Máximo: ${response[numbConference][3]}</p>
-                                        <div style="display: flex; justify-content: space-between;">
-                                        <a href="${response[numbConference][0]}" class="btn btn-primary">Ir al registro</a>
-                                        </div>
-                                        
+                                            <h5 class="card-title">${response[numbConference][1]}</h5>
+                                            <p class="card-text">${response[numbConference][2]}</p>
+                                            <p class="card-text">Cupo Máximo: ${response[numbConference][3]}</p>
+                                            <div style="display: flex; justify-content: space-between;" class="flex-column flex-md-row flex-lg-row">
+                                                <a href="${response[numbConference][0]}" class="btn btn-success">Ir al registro</a>
+                                                <a href="${response[numbConference][0]}/login.html" class="btn btn-warning">Login</a>   
+                                            </div>
                                         </div>
                                     </div>
                                 </div>`
