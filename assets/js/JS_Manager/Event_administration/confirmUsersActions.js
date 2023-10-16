@@ -21,9 +21,9 @@ async function getInformationRegisterUsers(id_evento) {
     if (response.status === 403) {
       throw new Error('Acceso prohibido');
     }
-    if(response.length === 0){
+    if (response.length === 0) {
       document.getElementById("tableRegisterUsers").innerHTML = `<h2 style="font-weight: bold; text-align: center;">Sin registros</h2>`
-    }else{
+    } else {
       document.getElementById("tableRegisterUsers").innerHTML = jsonToTable(response)
     }
 
@@ -72,7 +72,6 @@ function jsonToTable(jsonData) {
   tableHtml += "</table>";
   return tableHtml;
 }
-
 
 async function acceptUser(data) {
   try {
@@ -166,13 +165,13 @@ async function getInformationConfirmedUsers(id_evento) {
     if (response.status === 403) {
       throw new Error('Acceso prohibido');
     }
-    
-    if(response.length === 0){
+
+    if (response.length === 0) {
       document.getElementById("tableConfirmedUsers").innerHTML = `<h2 style="font-weight: bold; text-align: center;">Sin registros</h2>`
-    }else{
+    } else {
       document.getElementById("tableConfirmedUsers").innerHTML = jsonToTableConfirmed(response)
     }
-    
+
 
   } catch (Error) {
     toastifyError("Error al obtener el formulario", 1500)
@@ -214,4 +213,37 @@ function jsonToTableConfirmed(jsonData) {
   }
   tableHtml += "</table>";
   return tableHtml;
+}
+
+function downloadAttendanceList(id_evento) {
+  let token = localStorage.getItem('token');
+  fetch('http://localhost:8080/formularios/api/administration/downloadAttendanceExcel/' + id_evento,{
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }) // Replace with your actual API endpoint
+    .then(response => {
+      if (response.ok) {
+        return response.blob();
+      } else {
+        throw new Error('Failed to fetch the Excel file');
+      }
+    })
+    .then(blob => {
+      // Create a link element to trigger the download
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'asistencia.xlsx'; // Set the desired file name
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error(error);
+      // Handle the error here
+    });
+
 }

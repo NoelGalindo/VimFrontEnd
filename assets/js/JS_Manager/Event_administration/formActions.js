@@ -46,7 +46,6 @@ async function loadForm() {
                         </div>
                       </div>
                     </div>`
-
     }
 
     let actions = `<div class="card">
@@ -57,6 +56,7 @@ async function loadForm() {
                         <div class="d-flex justify-content-evenly flex-column flex-md-row flex-lg-row flex-xl-row flex-xxl-row">
                           <button title="Confirmar usuarios" onclick="optionSeeRegisterUsers(${id_evento})" class="btn btn-green m-1">Confirmar usuarios</button>
                           <button title="Usuarios confirmados" onclick="optionSeeConfirmedUsers(${id_evento})" class="btn btn-blue m-1">Usuarios confirmados</button>
+                          <button title="Descargar lista de asistencia" onclick="downloadAttendanceList(${id_evento})" class="btn btn-yellow m-1">Lista de asistencia</button>
                         </div>
                       </div>
                   </div>`
