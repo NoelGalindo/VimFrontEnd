@@ -217,6 +217,16 @@ function jsonToTableConfirmed(jsonData) {
 
 function downloadAttendanceList(id_evento) {
   let token = localStorage.getItem('token');
+
+  /* Loading feature */
+  let load = document.getElementById("loaderContainer")
+  let mainSection = document.getElementById("mainSection")
+  let contentLoad = document.getElementById("contentLoad")
+
+  contentLoad.style.display = "flex"
+  mainSection.style.filter = "blur(2px)"
+  load.style.display = "block"
+
   fetch('http://localhost:8080/formularios/api/administration/downloadAttendanceExcel/' + id_evento,{
     method: 'GET',
     headers: {
@@ -238,12 +248,18 @@ function downloadAttendanceList(id_evento) {
       a.href = url;
       a.download = 'asistencia.xlsx'; // Set the desired file name
       document.body.appendChild(a);
+      contentLoad.style.display = "none"
+      load.style.display = "none"
+      mainSection.style.filter = ""
       a.click();
       window.URL.revokeObjectURL(url);
     })
     .catch(error => {
       console.error(error);
       // Handle the error here
+      contentLoad.style.display = "none"
+      load.style.display = "none"
+      mainSection.style.filter = ""
     });
 
 }
