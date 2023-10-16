@@ -215,3 +215,54 @@ function jsonToTableConfirmed(jsonData) {
   tableHtml += "</table>";
   return tableHtml;
 }
+
+function downloadAttendanceList(id_evento) {
+  let token = localStorage.getItem('token');
+  /* Loading feature */
+  let load = document.getElementById("loaderContainer")
+  let mainSection = document.getElementById("mainSection")
+  let contentLoad = document.getElementById("contentLoad")
+
+  contentLoad.style.display = "flex"
+  mainSection.style.filter = "blur(2px)"
+  load.style.display = "block"
+
+  fetch('https://encurso.fly.dev/formularios/api/administration/downloadAttendanceExcel/' + id_evento,{
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  }) // Replace with your actual API endpoint
+    .then(response => {
+      if (response.ok) {
+        return response.blob();
+      } else {
+        throw new Error('Failed to fetch the Excel file');
+      }
+    })
+    .then(blob => {
+      // Create a link element to trigger the download
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'asistencia.xlsx'; // Set the desired file name
+      document.body.appendChild(a);
+      /* Loading feature ends*/
+      contentLoad.style.display = "none"
+      load.style.display = "none"
+      mainSection.style.filter = ""
+      a.click();
+      window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+      console.error(error);
+      // Handle the error here
+      /* Loading feature ends*/
+      contentLoad.style.display = "none"
+      load.style.display = "none"
+      mainSection.style.filter = ""
+      toastifyError("Error al descargar la lista de asistencia.", 1500)
+    });
+
+}
