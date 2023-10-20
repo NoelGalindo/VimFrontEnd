@@ -248,6 +248,37 @@
             </div>
         </div>
 
+        <!-- Modal see confirmed users -->
+        <div class="modal fade" id="markAttendance" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Chequeo de asistencia</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formAttendance">
+                            <div style="display: none;" id="validationSuccess" class="alert alert-success" role="alert">
+                                Se ah registrado la asistencia correctamente!
+                            </div>
+                            <div style="display: none;" id="validationFailed" class="alert alert-danger" role="alert">
+                                Error al validar la asistencia, revisa el folio.
+                            </div>
+                            <label style="font-weight: bold;">Folio:</label>
+                            <input type="number" class="form-control" id="txt_folio"><br>
+                            <div class="d-flex justify-content-end ">
+                                <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Validar</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
     <!--Bootstrap JS-->
