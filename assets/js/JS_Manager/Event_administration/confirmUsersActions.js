@@ -63,9 +63,11 @@ function jsonToTable(jsonData) {
         tableHtml += "<td>" + jsonData[i][key] + "</td>";
       }
     }
+    let identityEventFolio = ""+jsonData[i].id_evento+"_"+jsonData[i].folio
+
     tableHtml += `<td>
-                                    <button style="padding: revert" class="btn btn-green" onclick="acceptUser(${jsonData[i].id_evento}.${jsonData[i].folio})"><i class="bi bi-check-circle-fill"></i></button>
-                                    <button style="padding: revert" class="btn btn-red" onclick="refusetUser(${jsonData[i].id_evento}.${jsonData[i].folio})"><i class="bi bi-x-circle-fill"></i></button>
+                                    <button style="padding: revert" class="btn btn-green" onclick="acceptUser('${identityEventFolio}')"><i class="bi bi-check-circle-fill"></i></button>
+                                    <button style="padding: revert" class="btn btn-red" onclick="refusetUser('${identityEventFolio}')"><i class="bi bi-x-circle-fill"></i></button>
                             </td>`
     tableHtml += "</tr>";
   }
@@ -84,7 +86,7 @@ async function acceptUser(data) {
     mainSection.style.filter = "blur(2px)"
     load.style.display = "block"
 
-    let info = data.toString().split(".")
+    let info = data.toString().split("_")
     const datos = {}
     datos.id_evento = info[0]
     datos.folio = info[1]
@@ -118,7 +120,7 @@ async function acceptUser(data) {
 
 async function refusetUser(data) {
   try {
-    let info = data.toString().split(".")
+    let info = data.toString().split("_")
     const datos = {}
     datos.id_evento = info[0]
     datos.folio = info[1]
@@ -215,6 +217,57 @@ function jsonToTableConfirmed(jsonData) {
   tableHtml += "</table>";
   return tableHtml;
 }
+
+function optionMarkAttendance(){
+  let modalChechAttendance = new bootstrap.Modal(document.getElementById('markAttendance'), {
+    keyboard: false
+  });
+  modalChechAttendance.show();
+}
+
+let formAttendance = document.getElementById('formAttendance')
+
+formAttendance.addEventListener("submit", checkAttendance)
+
+async function checkAttendance(e){
+  e.preventDefault()
+  document.getElementById("validationSuccess").style.display = "none"
+  document.getElementById("validationFailed").style.display = "none"
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const id_evento = urlParams.get('evento')
+  let folio = document.getElementById("txt_folio").value
+
+  const datos = {}
+  datos.id_evento = id_evento
+  datos.folio = folio
+
+  let token = localStorage.getItem('token');
+  try{
+    const request = await fetch('https://encurso.fly.dev/formularios/api/administration/markAttendance', {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(datos)
+    });
+    const response = await request.text();
+    if (response.status === 403) {
+      throw new Error('Acceso prohibido');
+    }
+
+    if(response === "Exito"){
+      document.getElementById("validationSuccess").style.display = "block"
+    }else{
+        document.getElementById("validationFailed").style.display = "block"
+    }
+    optionMarkAttendance()
+  }catch(error){
+
+  }
+}
+
 
 function downloadAttendanceList(id_evento) {
   let token = localStorage.getItem('token');
