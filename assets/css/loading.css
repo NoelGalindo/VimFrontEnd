@@ -8,9 +8,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: url("../img/spinner-encursoV6.gif") center no-repeat ;
+    background-size: 70%;
 }
 
-.loader {
+/* .loader {
     width: 50px;
     aspect-ratio: 1;
     color: #398EB6;
@@ -39,4 +41,4 @@
   @keyframes l39-2 {
     0%,40%  {transform: rotate(0)}
     60%,100%{transform: rotate(90deg)}
-  }
+  } */

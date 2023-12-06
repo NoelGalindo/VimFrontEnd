@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png" sizes="437x437" href="../assets/img/favicon.png">
     <link rel="stylesheet" href="../assets/css/estilos.css">
     <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/loading.css">
     <link rel="stylesheet" href="../assets/css/nav.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/footer.css">
@@ -24,6 +25,9 @@
 </head>
 
 <body>
+    <div id="contentLoad" class="contenedor_loader" style="display: none;">
+        <div class="loader" id="loaderContainer"></div>
+    </div>
     <!-- Menú expandido -->
     <div id="side-menu" class="menu-expanded">
         <div class="title-menu">
@@ -112,7 +116,7 @@
             <i class="fa-solid fa-caret-left"></i>
         </div>
     </div>
-    <div class="workspace">
+    <div id="mainSection" class="workspace">
         <!-- Header -->
         <div class="header">
             <div class="title-header">

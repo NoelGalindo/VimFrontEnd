@@ -38,8 +38,20 @@ let formCreteForm = document.getElementById("formCreateForm")
 formCreteForm.addEventListener("submit", addRequest)
 
 async function addRequest(e){
+  e.preventDefault()
+  /* Loading feature */
+  let load = document.getElementById("loaderContainer")
+  let mainSection = document.getElementById("mainSection")
+  let sideMenu = document.getElementById("side-menu")
+  let contentLoad = document.getElementById("contentLoad")
+
   try{
-    e.preventDefault()
+    // LOADING FEATURE STARTS
+    contentLoad.style.display = "flex"
+    mainSection.style.filter = "blur(2px)"
+    sideMenu.style.filter = "blur(2px)"
+    load.style.display = "block"
+
     let token = localStorage.getItem('token');
     const urlParams = new URLSearchParams(window.location.search);
     const id_evento = urlParams.get('evento')
@@ -61,6 +73,13 @@ async function addRequest(e){
       },
       body: JSON.stringify(datosGeneralosForm) // Llama esa función para convertir en json.
     });
+
+    /* Loading feature ends*/
+    contentLoad.style.display = "none"
+    load.style.display = "none"
+    mainSection.style.filter = ""
+    sideMenu.style.filter = ""
+
     // Toastify       
     toastifyAllGood("Formulario creado correctamente", 1000)
     // Reload after some time
@@ -69,6 +88,11 @@ async function addRequest(e){
     }, 1300);
   }
   catch(Error){
+    /* Loading feature ends*/
+    contentLoad.style.display = "none"
+    load.style.display = "none"
+    mainSection.style.filter = ""
+    sideMenu.style.filter = ""
     toastifyError("Error al crear el formulario", 1500)
   }
 
