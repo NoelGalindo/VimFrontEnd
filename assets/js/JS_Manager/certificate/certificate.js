@@ -65,7 +65,7 @@ function uploadCertificateImg() {
   form.append("imagen_constancia", file.files[0])
 
   // First fetch request with POST
-  fetch('http://localhost:8080/eventos/api/certificateUrl', {
+  fetch('https://encurso.fly.dev/eventos/api/certificateUrl', {
     method: 'PUT', // Or 'GET' or other HTTP methods
     headers: {
       'Authorization': 'Bearer ' + token

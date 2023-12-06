@@ -54,13 +54,6 @@ function submitForm(e) {
   let nameWithOutSpaces = document.getElementById('direccionUrl').value
   let file = document.getElementById('imagenEvento');
 
-  // const data = {}
-  // data.username = localStorage.getItem("username")
-  // data.direccion_url = path + nameWithOutSpaces.replaceAll(' ', '');
-  // data.nombre_evento = document.getElementById("nombreEvento").value
-  // data.informacion_evento = document.getElementById("informacionEvento").value
-  // data.cupo_maximo = document.getElementById("cupoEvento").value
-
   // Create the formdata to send the values
   const formData = new FormData()
   formData.append("username", localStorage.getItem("username"))
@@ -73,7 +66,7 @@ function submitForm(e) {
   // SE CREA EL FETCH PARA ENVIAR LA INFORMACION AL SERVIDOR
 
   // First fetch request with POST
-  fetch('http://localhost:8080/eventos/api/addEvent', {
+  fetch('https://encurso.fly.dev/eventos/api/addEvent', {
     method: 'POST', // Or 'GET' or other HTTP methods
     headers: {
       'Authorization': 'Bearer ' + token
