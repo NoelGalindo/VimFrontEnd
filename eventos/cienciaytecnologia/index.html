@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="icon" type="image/png" sizes="437x437" href="../../assets/img/favicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="../../assets/css/estilos.css">
+    <link rel="stylesheet" href="../../assets/css/header.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/footer.css">
+    <link rel="stylesheet" href="../../assets/css/form.css">
+    <link rel="stylesheet" href="../../assets/css/loading.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Encurso - Registro</title>
+</head>
+
+<body style="height: auto;">
+
+
+    <!-- Workspace -->
+    <div class="workspace">
+        <div class="header">
+            <div class="title-header">
+                <img style="width: 150px; height: auto;" src="../../assets/img/logo_EnCurso_txt.png">
+            </div>
+            <div class="tools-header">
+
+                <a href="login.html" type="button" class="btn btn-warning">Login</a>
+
+
+            </div>
+        </div>
+
+        <div id="contentLoad" class="contenedor_loader" style="display: none;">
+            <div class="loader" id="loaderContainer"></div>
+        </div>
+
+        <!-- Content -->
+        <div id="mainSection" style="height: 100%;">
+            <div class="d-flex justify-content-center mt-2">
+                <h1 class="text-info">Registro</h1>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <div class="body-card">
+                        <form id="registerForm">
+                            <label style="font-weight: bold;">Nombre(s):</label>
+                            <input id="name" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Apellido paterno:</label>
+                            <input id="lastName_P" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Apellido materno:</label>
+                            <input id="lastName_M" type="text" class="form-text form-control" required><br>
+                            <label style="font-weight: bold;">Correo electrónico:</label>
+                            <input id="email" type="email" class="form-text form-control" required>
+                            <label id="duplicatedMsj" style="display: none;" class="text-danger">Este correo electrónico ya se encuentra registrado.</label><br>
+                            <label style="font-weight: bold;"> Fecha de nacimiento: </label>
+                            <input id="birthday" type="date" class="form-control" /> <br>
+                            <label style="font-weight: bold;">Adjuntar proyecto:</label>
+                            <input id="proyectDoc" type="file" class="form-control" accept=".pdf, .doc, .docx" required><br>
+                            
+                            <label style="font-weight: bold;">Género:</label>
+                            <select id="Gender" class="form-control" required>
+                                <option disabled>-- Selecciona una opción --</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                                <option value="Prefiero no contestar">Prefiero no contestar</option>
+                            </select><br>
+
+
+                            <label style="font-weight: bold;">Grado:</label>
+                            <select id="Grade" class="form-control" required>
+                                <option disabled>-- Selecciona una opción --</option>
+                                <option value="Primero">Primero</option>
+                                <option value="Segundo">Segundo</option>
+                                <option value="Tercero">Tercero</option><br>
+                            </select><br>
+                            
+
+                            <label style="font-weight: bold;">Grupo:</label>
+                            <select id="Group" class="form-control" required>
+                                <option disabled>-- Selecciona una opción --</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select><br>
+
+                            <label style="font-weight: bold;">Voucher de pago</label>
+                            <p class="text-danger">Asegurese de que su imagen sea la correcta</p>
+                            <input id="voucherImg" class="form-control" type="file" accept="image/png, image/gif, image/jpeg" required/><br>
+                            <div id="imgSpace" style="display: none; justify-content: center;">
+                                <img id="img" width="auto"  height="250px"/>
+                            </div>
+                            <br>
+                            <h4 style="font-weight: bold;">Tipo de participante:</h4>
+                            <ul class="navegation-bar">
+                                <li class="item-navbar-questions">
+                                  <!-- <button class="btn-navbar-questions active">Profesores</button> -->
+                                  <div class="btn-navbar-questions"><input type="radio" name="typeAttendant" value="profesores" checked> Profesores</div>
+                                </li>
+                                <li class="item-navbar-questions">
+                                  <!-- <button class="btn-navbar-questions">Invitados</button> -->
+                                  <div class="btn-navbar-questions"><input type="radio" name="typeAttendant" value="invitados"> Invitados</div>
+                                </li>
+                            </ul>
+                                                        
+                            <div id="questionsForTeachers" class="box-specificQuestions">
+                                <div class="box-titleQuestions">
+                                    <h2 class="box-title">Profesores:</h2>
+                                </div>
+                                <div class="box-contentQuestions">
+                                    <label style="font-weight: bold;">Grados que imparte:</label><br>
+                                    <div class="ms-2">
+                                        <input value="Primero" type="radio" name="gradosImparte" required> <label>Primero</label><br>
+                                        <input value="Seguno" type="radio" name="gradosImparte"> <label>Segundo</label><br>
+                                        <input value="Tercero" type="radio" name="gradosImparte"> <label>Tercero</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="questionsForGuests" class="box-specificQuestions" style="display: none;">
+                                <div class="box-titleQuestions">
+                                    <h2 class="box-title">Invitados:</h2>
+                                </div>
+                                <div class="box-contentQuestions">
+                                    <label style="font-weight: bold;">Asociación/Empresa:</label>
+                                    <input id="institution" type="text" class="form-text form-control" >
+                                </div>
+                            </div>
+                            <br>
+                            <div class="d-flex flex-column mt-3">
+                                <button type="submit" class="btn-green">Registrarme</button>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="footer-card d-flex justify-content-center"><i>@EncursoForms</i></div>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="footer">Footer</div> -->
+    </div>
+
+    <!--Modal de creado-->
+    <div class="modal fade" id="modalUserRegister" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje del sistema</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Te has registrado correctamente</h4>
+                    <p>Tu solicitud de registro al evento ha sido enviada, una vez que el administrador del evento valide tu información recibiras un correo de confirmación con los datos 
+                        necesarios para iniciar sesion y puedas descargar tu gafete de acceso.
+                    </p>
+                    <hr>
+                    <p class="mb-0">Cualquier duda o pregunta no dude en contactarnos.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Modal de creado-->
+    <div class="modal fade" id="modalUserRegisterError" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Mensaje del sistema</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">No fue posible registrarse</h4>
+                    <p>Por el momento no fue posible realizar el registro al evento, intentelo mas tarde.
+                    </p>
+                    <hr>
+                    <p class="mb-0">Si el error persiste no dude en contactarnos.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/37cd862f09.js" crossorigin="anonymous"></script>
+
+    <!--Toastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Script save data user -->
+    <script src="../../assets/js/toastify.js"></script>
+    <script src="../../assets/js/cienciaytecnologia_JS/register.js"></script>
+
+</body>
+
+</html>

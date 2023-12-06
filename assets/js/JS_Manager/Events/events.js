@@ -48,73 +48,57 @@ form.addEventListener("submit", submitForm)
 function submitForm(e) {
   let token = localStorage.getItem('token');
   e.preventDefault()
+
   // Objecto con los valores
   let path = window.location.protocol + '//' + window.location.host + '/eventos/'
   let nameWithOutSpaces = document.getElementById('direccionUrl').value
-  const data = {}
-  data.username = localStorage.getItem("username")
-  data.direccion_url = path + nameWithOutSpaces.replaceAll(' ','');
-  data.nombre_evento = document.getElementById("nombreEvento").value
-  data.informacion_evento = document.getElementById("informacionEvento").value
-  data.cupo_maximo = document.getElementById("cupoEvento").value
-
-  // CREANDO LOS DOS FETCH PARA AGREGAR LOS EVENTOS
-
-  // Setting all the values to save the img
-  let datetime = new Date();
   let file = document.getElementById('imagenEvento');
-  let form = new FormData();
-  let name = datetime.toISOString().replace(".", "-")
-  form.append("image", file.files[0], name)
+
+  // const data = {}
+  // data.username = localStorage.getItem("username")
+  // data.direccion_url = path + nameWithOutSpaces.replaceAll(' ', '');
+  // data.nombre_evento = document.getElementById("nombreEvento").value
+  // data.informacion_evento = document.getElementById("informacionEvento").value
+  // data.cupo_maximo = document.getElementById("cupoEvento").value
+
+  // Create the formdata to send the values
+  const formData = new FormData()
+  formData.append("username", localStorage.getItem("username"))
+  formData.append("direccion_url", path + nameWithOutSpaces.replaceAll(' ', ''))
+  formData.append("nombre_evento", document.getElementById("nombreEvento").value)
+  formData.append("informacion_evento", document.getElementById("informacionEvento").value)
+  formData.append("cupo_maximo", document.getElementById("cupoEvento").value)
+  formData.append("banner", file.files[0])
+
+  // SE CREA EL FETCH PARA ENVIAR LA INFORMACION AL SERVIDOR
 
   // First fetch request with POST
-  fetch('https://api.imgbb.com/1/upload?key=0e26bd5ca0550f416134eca6bc11685d', {
-    method: 'POST',
+  fetch('http://localhost:8080/eventos/api/addEvent', {
+    method: 'POST', // Or 'GET' or other HTTP methods
     headers: {
-
+      'Authorization': 'Bearer ' + token
     },
-    body: form // Replace with the data you want to send
+    body: formData // ENVIAMOS EL FORM DATA PARA PROCESAR LA PETICION
   })
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json(); // Assuming the response is in JSON format
-    })
-    .then(dataFromFirstRequest => {
-      data.imagen_evento = dataFromFirstRequest.data.display_url
-
-      return fetch('http://localhost:8080/eventos/api/addEvent', {
-        method: 'POST', // Or 'GET' or other HTTP methods
-        headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data) // Use the data from the first request
-      });
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response // Assuming the response is in JSON format
-    })
-    .then(dataFromSecondRequest => {
+      // What we would do if everything was ok
       toastifyAllGood("Evento creado correctamente", 1000)
-      /* Hide the modals */
-      setTimeout(function() {
+      setTimeout(function () {
         location.reload();
       }, 1300);
     })
     .catch(error => {
-      toastifyError("Error al crear el evento", 1000)  
+      toastifyError("Error al crear el evento", 1000)
     })
 
 }
 
 
 // OBTENER TODOS LOS EVENTOS
-async function getAllEvents(){
+async function getAllEvents() {
   try {
     let token = localStorage.getItem('token');
     const request = await fetch('http://localhost:8080/eventos/api/getEvents', {
@@ -125,7 +109,7 @@ async function getAllEvents(){
       body: token
     });
     const response = await request.json();
-    if(Object.keys(response).length){
+    if (Object.keys(response).length) {
       let btnCreateEvent = document.getElementById("btnCreateEvent")
       btnCreateEvent.disabled = true
       btnCreateEvent.style.display = "none"
@@ -134,14 +118,14 @@ async function getAllEvents(){
                   </div>`
       document.getElementById("cantCreateMoreEvents").innerHTML += alert
     }
-      
+
     if (response.status === 403) {
       throw new Error('Acceso prohibido');
     }
     let availableEvents = document.getElementById('availableEvents')
     let structure = ""
-    for(events of response){
-      switch(events.status){
+    for (events of response) {
+      switch (events.status) {
         case "Creado":
           structure += `<div class="col-md-8 col-sm-12 col-lg-8 mb-4">
                       <div class="card h-100">
@@ -194,9 +178,9 @@ async function getAllEvents(){
                   </div>`
           break
       }
-      
+
     }
-      availableEvents.innerHTML += structure
+    availableEvents.innerHTML += structure
 
   } catch (Error) {
     console.log("Error")
@@ -204,46 +188,46 @@ async function getAllEvents(){
 }
 
 // SEND TO REVIEW THE EVENT
-async function sendEvent(id_evento){
+async function sendEvent(id_evento) {
   let token = localStorage.getItem('token');
-  try{
+  try {
     const request = await fetch('http://localhost:8080/eventos/api/sendEvent', {
-        method: 'PUT',
-        headers: {
-          'Authorization': 'Bearer '+token,
-          'Content-Type': 'application/json'
-        },
-        body: id_evento // Llama esa función para convertir en json.
-      });
-      // Toastify
-      toastifyAllGood("Formulario enviado a revisión correctamente", 1500)
-      setTimeout(function() {
-        location.reload();
-      }, 1300);
-  }catch(Error){
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: id_evento // Llama esa función para convertir en json.
+    });
+    // Toastify
+    toastifyAllGood("Formulario enviado a revisión correctamente", 1500)
+    setTimeout(function () {
+      location.reload();
+    }, 1300);
+  } catch (Error) {
     toastifyError('Error al enviar el formulario a revisión', 1000)
   }
 }
 
 // ELIMINAR EVENTO
-async function eliminarEvento(id){
-  try{
+async function eliminarEvento(id) {
+  try {
     let token = localStorage.getItem('token');
-    if(confirm('¿Desea eliminar este formulario? ')){
-        const request = await fetch('http://localhost:8080/eventos/api/deleteEvent/'+id, {
-                method: 'DELETE',
-                headers: {
-                  'Authorization': 'Bearer '+token
-                }
-              });
-        toastifyAllGood("Evento eliminado", 1000)
-        setTimeout(function() {
-          location.reload();
-        }, 1300);
+    if (confirm('¿Desea eliminar este formulario? ')) {
+      const request = await fetch('http://localhost:8080/eventos/api/deleteEvent/' + id, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        }
+      });
+      toastifyAllGood("Evento eliminado", 1000)
+      setTimeout(function () {
+        location.reload();
+      }, 1300);
     }
-  }catch(Error){
+  } catch (Error) {
     toastifyError("Error al eliminar el formulario", 1000)
-  } 
+  }
 }
 
 function toastifyAllGood(textT, durationT) {

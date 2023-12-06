@@ -58,20 +58,17 @@ function uploadCertificateImg() {
   let token = localStorage.getItem('token');
   const urlParams = new URLSearchParams(window.location.search);
   const id_evento = urlParams.get('evento')
-  // Creating the JSON for certificate information 
-  const information = {}
-  information.id_evento = id_evento
-  let datetime = new Date();
+  // CREATING THE FORM DATA TO SEND THE INFORMATION
   let file = document.getElementById("certificateImage")
   let form = new FormData();
-  let name = datetime.toISOString().replace(".", "-")
-  form.append("image", file.files[0], name)
+  form.append("id_evento", id_evento)
+  form.append("imagen_constancia", file.files[0])
 
   // First fetch request with POST
-  fetch('https://api.imgbb.com/1/upload?key=0e26bd5ca0550f416134eca6bc11685d', {
-    method: 'POST',
+  fetch('http://localhost:8080/eventos/api/certificateUrl', {
+    method: 'PUT', // Or 'GET' or other HTTP methods
     headers: {
-
+      'Authorization': 'Bearer ' + token
     },
     body: form // Replace with the data you want to send
   })
@@ -79,30 +76,7 @@ function uploadCertificateImg() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json(); // Assuming the response is in JSON format
-    })
-    .then(dataFromFirstRequest => {
-      console.log(dataFromFirstRequest)
-      information.imagen_constancia = dataFromFirstRequest.data.display_url
-
-      return fetch('http://localhost:8080/eventos/api/certificateUrl', {
-        method: 'PUT', // Or 'GET' or other HTTP methods
-        headers: {
-          'Authorization': 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(information) // Use the data from the first request
-      });
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response // Assuming the response is in JSON format
-    })
-    .then(dataFromSecondRequest => {
       toastifyAllGood("Constancia subida correctamente", 1000)
-      /* Hide the modals */
       setTimeout(function () {
         location.reload();
       }, 1300);
@@ -110,7 +84,6 @@ function uploadCertificateImg() {
     .catch(error => {
       toastifyError("Error al crear el evento", 1000)
     })
-
 
 }
 
