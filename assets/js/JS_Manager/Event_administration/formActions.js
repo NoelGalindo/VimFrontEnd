@@ -46,7 +46,6 @@ async function loadForm() {
                         </div>
                       </div>
                     </div>`
-
     }
 
     let actions = `<div class="card">

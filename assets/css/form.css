@@ -22,7 +22,7 @@
 
 
 
-/*------------------------- imput -----------------------*/
+/*------------------------- input -----------------------*/
 
 
 .input-form{
@@ -206,4 +206,52 @@
     margin-top: 5px;
     margin-bottom: 5px;
     cursor: pointer;
+}
+
+/* ------------------------------------- BOX FOR SPECIFIC QUESTIONS -------------------------------------------------------------------- */
+
+.navegation-bar{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    border-bottom: 1px solid lightgray;
+    margin-bottom: .2rem;
+}
+
+.item-navbar-questions{
+    display: block;
+    background-color: #fff;
+
+}
+
+.btn-navbar-questions{
+    display: inline-block;
+    padding: .375rem .75rem;
+    border-radius: .25rem;
+    background-color: #fff;
+    border: .5px solid lightgray;
+}
+
+.box-specificQuestions{
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+.box-titleQuestions{
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.box-title{
+    padding: 7px;
+    border-radius: 8px;
+    font-weight: bold; 
+    background-color: lightblue;
+}
+
+.box-contentQuestions{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }

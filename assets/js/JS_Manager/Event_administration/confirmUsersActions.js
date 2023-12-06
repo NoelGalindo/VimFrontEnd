@@ -21,9 +21,9 @@ async function getInformationRegisterUsers(id_evento) {
     if (response.status === 403) {
       throw new Error('Acceso prohibido');
     }
-    if(response.length === 0){
+    if (response.length === 0) {
       document.getElementById("tableRegisterUsers").innerHTML = `<h2 style="font-weight: bold; text-align: center;">Sin registros</h2>`
-    }else{
+    } else {
       document.getElementById("tableRegisterUsers").innerHTML = jsonToTable(response)
     }
 
@@ -64,7 +64,6 @@ function jsonToTable(jsonData) {
       }
     }
     let identityEventFolio = ""+jsonData[i].id_evento+"_"+jsonData[i].folio
-
     tableHtml += `<td>
                                     <button style="padding: revert" class="btn btn-green" onclick="acceptUser('${identityEventFolio}')"><i class="bi bi-check-circle-fill"></i></button>
                                     <button style="padding: revert" class="btn btn-red" onclick="refusetUser('${identityEventFolio}')"><i class="bi bi-x-circle-fill"></i></button>
@@ -75,13 +74,13 @@ function jsonToTable(jsonData) {
   return tableHtml;
 }
 
-
 async function acceptUser(data) {
   try {
     /* Loading feature */
     let load = document.getElementById("loaderContainer")
     let mainSection = document.getElementById("mainSection")
     let contentLoad = document.getElementById("contentLoad")
+
     contentLoad.style.display = "flex"
     mainSection.style.filter = "blur(2px)"
     load.style.display = "block"
@@ -168,13 +167,13 @@ async function getInformationConfirmedUsers(id_evento) {
     if (response.status === 403) {
       throw new Error('Acceso prohibido');
     }
-    
-    if(response.length === 0){
+
+    if (response.length === 0) {
       document.getElementById("tableConfirmedUsers").innerHTML = `<h2 style="font-weight: bold; text-align: center;">Sin registros</h2>`
-    }else{
+    } else {
       document.getElementById("tableConfirmedUsers").innerHTML = jsonToTableConfirmed(response)
     }
-    
+
 
   } catch (Error) {
     toastifyError("Error al obtener el formulario", 1500)
